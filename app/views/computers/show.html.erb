@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h4 class="mt-4 mb-4 display-4">vue détaillé de l'équipement <%= @computer.id %></h4>
+  </div>
+  <div class="row justify-content-center">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Nom de l'équipement:</th>
+          <td><%= @computer.hostname %></td>
+        </tr>
+        <tr>
+          <th>Date:</th>
+          <td><%= @computer.date %></td>
+        </tr>
+        <tr>
+          <th>Fin de vie:</th>
+          <td><%= @computer.endoflife %></td>
+        </tr>
+        <tr>
+          <th>Assigné à :</th>
+          <td><%= @computer.assigned_to %></td>
+        </tr>
+        <tr>
+          <th>Processeur :</th>
+          <td><%= @computer.processor %></td>
+        </tr>
+        <tr>
+          <th>Mémoire :</th>
+          <td><%= @computer.memory %></td>
+        </tr>
+        <tr>
+          <th>Type de disque dur :</th>
+          <td><%= @computer.type_disk %></td>
+        </tr>
+        <tr>
+          <th>VPN installé :</th>
+          <td><%= @computer.vpn %></td>
+        </tr>
+        <tr>
+          <th>Compte local :</th>
+          <td><%= @computer.local_account %></td>
+        </tr>
+        <tr>
+          <th>Mot de passe local :</th>
+          <td><%= @computer.local_password %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+  <%= link_to "Editer", edit_computer_path(@computer) %> |
+  <%= link_to "retour aux équipements", computers_path %>
+
+  <%= button_to "Detruire l'équipement", @computer, method: :delete %>
+</div>
+</div>

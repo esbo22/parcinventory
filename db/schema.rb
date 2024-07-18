@@ -10,5 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_203653) do
+  create_table "clients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.integer "phone"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "computers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "hostname"
+    t.string "date"
+    t.string "endoflife"
+    t.string "assigned_to"
+    t.string "processor"
+    t.string "memory"
+    t.string "type_disk"
+    t.string "vpn"
+    t.string "local_password"
+    t.string "local_account"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end

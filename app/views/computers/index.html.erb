@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h4 class="mt-4 display-4">Liste des équipements</h4>
+  </div>
+  <%= link_to 'Nouvelle équipement', new_computer_path %>
+  <% if @computers.present? %>
+    <div class="row justify-content-center">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Nom de l'équipement</th>
+            <th scope="col">Fin de vie</th>
+            <th scope="col" colspan="3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @computers.each do |computer| %>
+            <tr>
+              <td><%= computer.hostname %></td>
+              <td><%= computer.endoflife %></td>
+              <td><%= link_to "Regarder", computer_path(computer.id) %></td>
+              <td><%= link_to "Edité", edit_computer_path(computer.id) %></td>
+              <td>
+                <%= button_to "Detruire", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "delete-button" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="p-3 mb-2 bg-light text-dark">
+      <span class="text-info font-weight-bold">Bienvenue! </span>
+      Creer votre première équipement :)
+    </div>
+  <% end %>
+</div>
