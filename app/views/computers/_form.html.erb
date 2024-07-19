@@ -19,17 +19,21 @@
     <%= form.text_field :assigned_to, class: 'form-control' %>
   </div>
 
+
   <div class="form-group">
-    <%= form.label "Processeur :" %>
-    <%= form.select :processor, options_for_select(['i3', 'i5', 'i7', 'i9'], selected: @computer.processor), { prompt: 'Sélectionner un processeur' }, class: 'form-control', id: 'processor_select' %>
+    <%= form.label :processor, "Processeur :" %>
+    <%= form.select :processor, options_for_select(['i3', 'i5', 'i7', 'i9'], selected: @computer.processor), { prompt: 'Sélectionner un processeur' }, { class: 'form-control', id: 'processor_select' } %>
     <%= form.text_field :processor, placeholder: 'Ou entrez-le manuellement', class: 'form-control', id: 'processor_input' %>
   </div>
 
   <div class="form-group">
-    <%= form.label "Mémoire :" %>
-    <%= form.select :memory, options_for_select(['2Go', '4Go', '8Go', '16Go'], selected: @computer.memory), { prompt: 'Sélectionner une mémoire' }, class: 'form-control', id: 'memory_select' %>
+    <%= form.label :memory, "Mémoire :" %>
+    <%= form.select :memory, options_for_select(['2Go', '4Go', '8Go', '16Go'], selected: @computer.memory), { prompt: 'Sélectionner une mémoire' }, { class: 'form-control', id: 'memory_select' } %>
     <%= form.text_field :memory, placeholder: 'Ou entrez-le manuellement', class: 'form-control', id: 'memory_input' %>
   </div>
+
+
+
 
   <div class="form-group">
     <%= form.label "Type de disque dur :" %>

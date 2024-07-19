@@ -1,55 +1,40 @@
-// app/javascript/application.js
-
 import { Turbo } from "@hotwired/turbo-rails"
 Turbo.start()
 
-import "jquery"
-import "jquery-ui"
-import "jquery-ujs"
+import $ from "jquery"
+import "jquery-ui/ui/widgets/datepicker"
 
-// Code JavaScript pour initialiser les éléments et ajouter des fonctionnalités
 document.addEventListener("turbo:load", function() {
-  var selectProcessorField = document.getElementById('processor_select');
-  var processorInputField = document.getElementById('processor_input');
-
-  if (selectProcessorField && processorInputField) {
-    selectProcessorField.addEventListener('change', function() {
-      if (selectProcessorField.value === '') {
-        processorInputField.style.display = 'block';
-        processorInputField.value = '';
+  function handleSelectChange(selectElement, inputElement) {
+    selectElement.addEventListener('change', function() {
+      if (selectElement.value === '') {
+        inputElement.style.display = 'block';
+        inputElement.value = '';
       } else {
-        processorInputField.style.display = 'none';
-        processorInputField.value = selectProcessorField.value;
+        inputElement.style.display = 'none';
+        inputElement.value = selectElement.value;
       }
     });
 
-    if (selectProcessorField.value === '') {
-      processorInputField.style.display = 'block';
+    if (selectElement.value === '') {
+      inputElement.style.display = 'block';
     } else {
-      processorInputField.style.display = 'none';
-      processorInputField.value = selectProcessorField.value;
+      inputElement.style.display = 'none';
+      inputElement.value = selectElement.value;
     }
   }
 
-  var selectMemoryField = document.getElementById('memory_select');
-  var memoryInputField = document.getElementById('memory_input');
+  const processorSelect = document.getElementById('processor_select');
+  const processorInput = document.getElementById('processor_input');
 
-  if (selectMemoryField && memoryInputField) {
-    selectMemoryField.addEventListener('change', function() {
-      if (selectMemoryField.value === '') {
-        memoryInputField.style.display = 'block';
-        memoryInputField.value = '';
-      } else {
-        memoryInputField.style.display = 'none';
-        memoryInputField.value = selectMemoryField.value;
-      }
-    });
+  const memorySelect = document.getElementById('memory_select');
+  const memoryInput = document.getElementById('memory_input');
 
-    if (selectMemoryField.value === '') {
-      memoryInputField.style.display = 'block';
-    } else {
-      memoryInputField.style.display = 'none';
-      memoryInputField.value = selectMemoryField.value;
-    }
+  if (processorSelect && processorInput) {
+    handleSelectChange(processorSelect, processorInput);
+  }
+
+  if (memorySelect && memoryInput) {
+    handleSelectChange(memorySelect, memoryInput);
   }
 });
