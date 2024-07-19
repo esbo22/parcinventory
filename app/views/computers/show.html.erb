@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-center">
-    <h4 class="mt-4 mb-4 display-4">vue détaillé de l'équipement <%= @computer.id %></h4>
+    <h4 class="mt-4 mb-4 display-4">Vue détaillée de l'équipement <%= @computer.id %></h4>
   </div>
   <div class="row justify-content-center">
     <table class="table">
@@ -11,11 +11,11 @@
         </tr>
         <tr>
           <th>Date:</th>
-          <td><%= @computer.date %></td>
+          <td><%= @computer.date.present? ? @computer.date.strftime('%d/%m/%Y') : 'Non spécifiée' %></td>
         </tr>
         <tr>
           <th>Fin de vie:</th>
-          <td><%= @computer.endoflife %></td>
+          <td><%= @computer.endoflife.present? ? @computer.endoflife.strftime('%d/%m/%Y') : 'Non spécifiée' %></td>
         </tr>
         <tr>
           <th>Assigné à :</th>
@@ -23,11 +23,11 @@
         </tr>
         <tr>
           <th>Processeur :</th>
-          <td><%= @computer.processor %></td>
+          <td><%= @computer.processor.presence || 'Non spécifié' %></td>
         </tr>
         <tr>
           <th>Mémoire :</th>
-          <td><%= @computer.memory %></td>
+          <td><%= @computer.memory.presence || 'Non spécifiée' %></td>
         </tr>
         <tr>
           <th>Type de disque dur :</th>
@@ -35,7 +35,7 @@
         </tr>
         <tr>
           <th>VPN installé :</th>
-          <td><%= @computer.vpn %></td>
+          <td><%= @computer.vpn ? 'Oui' : 'Non' %></td>
         </tr>
         <tr>
           <th>Compte local :</th>
@@ -49,9 +49,8 @@
     </table>
   </div>
   <div>
-  <%= link_to "Editer", edit_computer_path(@computer) %> |
-  <%= link_to "retour aux équipements", computers_path %>
-
-  <%= button_to "Detruire l'équipement", @computer, method: :delete %>
-</div>
+    <%= link_to "Editer", edit_computer_path(@computer) %> |
+    <%= link_to "Retour aux équipements", computers_path %>
+    <%= button_to "Détruire l'équipement", @computer, method: :delete %>
+  </div>
 </div>

@@ -21,19 +21,21 @@ class ComputersController < ApplicationController
     if @computer.save
       redirect_to @computer
     else
+      Rails.logger.debug "Errors: #{@computer.errors.full_messages}"
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
-   @computer = Computer.find(params[:id])
-
+    @computer = Computer.find(params[:id])
     if @computer.update(computer_params)
       redirect_to @computer
     else
+      Rails.logger.debug "Errors: #{@computer.errors.full_messages}"
       render :edit, status: :unprocessable_entity
     end
   end
+
 
   def destroy
     @computer = Computer.find(params[:id])
@@ -43,6 +45,6 @@ class ComputersController < ApplicationController
 
   private
     def computer_params
-      params.require(:computer).permit(:hostname, :date, :endoflife, :assigned_to, :processor, :memory, :type_disk, :vpn, :local_password, :local_account)
+      params.require(:computer).permit(:hostname, :date, :endoflife, :assigned_to, :processor, :memory, :type_disk, :vpn, :local_password, :local_account, :id)
     end
 end

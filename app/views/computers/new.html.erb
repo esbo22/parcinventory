@@ -1,66 +1,8 @@
-<h1>Computers#new</h1>
-<p>Vous êtes ici : app/views/computers/new.html.erb</p>
-
 <div class="container">
   <div class="row justify-content-center">
-    <h4 class="mt-4 mb-4 display-4">Nouvelle equipement</h4>
+    <h4 class="mt-4 mb-4 display-4">Ajouter un nouvel équipement</h4>
   </div>
   <div class="row justify-content-center">
-    <%= form_with scope: :computer, url: computers_path, local: true do |form| %>
-      <div class="form-group">
-        <%= form.label "Nom de l'équipement :" %>
-        <%= form.text_field :hostname, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Date :" %>
-        <%= form.text_area :date, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Fin de vie :" %>
-        <%= form.text_area :endoflife, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Assigné à :" %>
-        <%= form.text_area :assigned_to, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Processeur :" %>
-        <%= form.text_area :processor, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Memoire :" %>
-        <%= form.text_area :memory, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Type de disque dur :" %>
-        <%= form.text_area :type_disk, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "VPN installé :" %>
-        <%= form.text_area :vpn, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Compte local :" %>
-        <%= form.text_area :local_account, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Mot de passe local :" %>
-        <%= form.text_area :local_password, class: 'form-control' %>
-      </div>
-
-
-      <div class="form-group">
-        <%= form.submit class: 'form-control btn-primary' %>
-      </div>
-    <% end %>
+    <%= render 'form', computer: @computer %>
   </div>
 </div>

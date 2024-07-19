@@ -18,3 +18,46 @@
   color: #ff4d4d;
   border: 2px solid #ff4d4d;
 }
+
+
+.look-button {
+  background-color: #6eb5FF;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+.look-button:hover {
+  background-color: white;
+  color: #6eb5FF;
+  border: 2px solid #6eb5FF;
+}
+
+.edit-button {
+  background-color: #ffcc99;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+.edit-button:hover {
+  background-color: white;
+  color: #ffcc99;
+  border: 2px solid #ffcc99;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_17_203653) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_19_160917) do
   create_table "clients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "address"
@@ -22,13 +22,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_203653) do
 
   create_table "computers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "hostname"
-    t.string "date"
-    t.string "endoflife"
+    t.date "date"
+    t.date "endoflife"
     t.string "assigned_to"
     t.string "processor"
     t.string "memory"
     t.string "type_disk"
-    t.string "vpn"
+    t.boolean "vpn"
     t.string "local_password"
     t.string "local_account"
     t.datetime "created_at", null: false
