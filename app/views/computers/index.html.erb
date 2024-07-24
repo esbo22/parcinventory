@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <h4 class="mt-4 display-4">Liste des équipements</h4>
   </div>
-  <%= link_to 'Nouvelle équipement', new_computer_path %>
+  <%= link_to 'Nouvelle équipement', new_computer_path, class: "look-button" %>
   <% if @computers.present? %>
     <div class="row justify-content-center">
       <table class="table table-bordered">

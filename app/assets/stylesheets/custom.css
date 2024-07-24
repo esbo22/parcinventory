@@ -105,7 +105,7 @@ table .end-life-success:hover {
 }
 
 table .end-life-warning {
-  background-color: orange;
+  background-color: #f39c14;
   color: black; /* Texte blanc pour rendre le texte lisible sur fond orange */
   border: none;
   padding: 8px 16px;
@@ -121,6 +121,6 @@ table .end-life-warning {
 
 table .end-life-warning:hover {
   background-color: black;
-  color: orange;
-  border: 2px solid orange;
+  color: #f39c14;
+  border: 2px solid #f39c14;
 }
