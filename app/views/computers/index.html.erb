@@ -8,18 +8,18 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nom de l'équipement</th>
-            <th scope="col">Fin de vie</th>
-            <th scope="col" colspan="1">Action</th>
-            <th scope="col" colspan="1">Edition</th>
-            <th scope="col" colspan="1">Suppression</th>
+            <th scope="col" class="tab-index">ID</th>
+            <th scope="col" class="tab-index">Nom de l'équipement</th>
+            <th scope="col" class="tab-index">Fin de vie</th>
+            <th scope="col" class="tab-index" colspan="1">Action</th>
+            <th scope="col" class="tab-index" colspan="1">Edition</th>
+            <th scope="col" class="tab-index" colspan="1">Suppression</th>
           </tr>
         </thead>
         <tbody>
           <% @computers.each do |computer| %>
             <tr>
-              <td><%= computer.id %></td>
+              <td class="tab-index"><%= computer.id %></td>
               <td><%= computer.hostname %></td>
               <td class="<%= computer.end_of_life_class %>"><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
               <td><%= link_to "Regarder", computer_path(computer.id), class: "look-button" %></td>
