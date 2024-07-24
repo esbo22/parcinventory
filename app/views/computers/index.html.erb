@@ -21,7 +21,7 @@
             <tr>
               <td><%= computer.id %></td>
               <td><%= computer.hostname %></td>
-              <td><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
+              <td class="<%= computer.end_of_life_class %>"><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
               <td><%= link_to "Regarder", computer_path(computer.id), class: "look-button" %></td>
               <td><%= link_to "Edité", edit_computer_path(computer.id), class: "edit-button" %></td>
               <td>

@@ -61,3 +61,66 @@
   color: #ffcc99;
   border: 2px solid #ffcc99;
 }
+
+table .end-life-danger {
+  background-color: red;
+  color: white; /* Texte blanc pour rendre le texte lisible sur fond rouge */
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+table .end-life-danger:hover {
+  background-color: white;
+  color: red;
+  border: 2px solid red;
+}
+
+table .end-life-success {
+  background-color: green;
+  color: white; /* Texte blanc pour rendre le texte lisible sur fond vert */
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+table .end-life-success:hover {
+  background-color: white;
+  color: green;
+  border: 2px solid green;
+}
+
+table .end-life-warning {
+  background-color: orange;
+  color: black; /* Texte blanc pour rendre le texte lisible sur fond orange */
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+table .end-life-warning:hover {
+  background-color: black;
+  color: orange;
+  border: 2px solid orange;
+}
