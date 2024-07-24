@@ -8,4 +8,8 @@ class Computer < ApplicationRecord
       'end-life-success' # Vert
     end
   end
+
+  def hostname_present?
+    hostname.present?
+  end
 end

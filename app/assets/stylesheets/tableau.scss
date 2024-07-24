@@ -2,3 +2,16 @@ table .tab-index {
   background-color: #364c59;
   color: white;
 }
+
+table .tab-name {
+  background-color: green;
+  color: white;
+}
+
+table .hostname-absent {
+  background-color: red; /* Fond blanc pour hostname absent */
+}
+
+table .hostname-present {
+  background-color: lightgreen; /* Un vert plus clair pour hostname présent */
+}
