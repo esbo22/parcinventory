@@ -2,16 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Application de Présentation</title>
+  <title>Présentation de l'application</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-  <div class="container">
-    <h1>Bienvenue sur mon application !</h1>
-    <p>Cette page présentera mon application.</p>
-    <p>Un lien vers la page de connexion sera disponible ici.</p>
-    <p>Avant, il y a beaucoup à faire :)</p>
-    <%= link_to 'Connexion', computers_path, class: 'button' %>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= asset_path('scott-graham.jpg') %>);">
+    <div class="container">
+      <h1>Bienvenue sur mon <strong>application</strong>!</h1>
+      <p>Un lien vers la page de connexion sera disponible ici.</p>
+      <p>Avant, il y a beaucoup à faire :)</p>
+      <%= link_to 'Connexion', computers_path, class: 'button' %>
+    </div>
   </div>
 </body>
 </html>
