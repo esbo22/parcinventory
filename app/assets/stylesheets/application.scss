@@ -7,11 +7,11 @@
 @import "bootstrap";
 @import "font-awesome";
 
-// Your CSS partials
+// CSS partials
 @import "components/index";
 @import "pages/index";
 
-// Your CSS internes
+// CSS internes
 @import "custom";
 
 // Tableau CSS index
@@ -19,3 +19,6 @@
 
 // CSS Home
 @import "pages/home";
+
+// CSS computer/edit
+@import "computer-edit.scss";

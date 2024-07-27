@@ -1,4 +1,6 @@
 class Computer < ApplicationRecord
+  belongs_to :client
+
   def end_of_life_class
     if endoflife <= Date.today + 1.year
       'end-life-danger' # Rouge

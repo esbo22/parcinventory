@@ -1,59 +1,64 @@
-<%= form_with(model: @computer, local: true, data: { turbo: false }) do |form| %>
+<%= form_with(model: @computer, local: true, data: { turbo: false }, class: 'custom-form') do |form| %>
   <div class="form-group">
-    <%= form.label "Nom de l'équipement :" %>
+    <%= form.label :hostname, "Nom de l'équipement :" %>
     <%= form.text_field :hostname, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label "Date :" %>
+    <%= form.label :date, "Date :" %>
     <%= form.date_select :date, order: [:day, :month, :year], class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label "Fin de vie :" %>
+    <%= form.label :endoflife, "Fin de vie :" %>
     <%= form.date_select :endoflife, order: [:day, :month, :year], class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label "Assigné à :" %>
+    <%= form.label :assigned_to, "Assigné à :" %>
     <%= form.text_field :assigned_to, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :processor, "Processeur :" %>
-    <%= form.select :processor, options_for_select(['i3', 'i5', 'i7', 'i9'], selected: @computer.processor), { prompt: 'Sélectionner un processeur' }, { class: 'form-control', id: 'processor_select' } %>
-    <%= form.text_field :processor, placeholder: 'Ou entrez-le manuellement', class: 'form-control', id: 'processor_input' %>
-    <%= hidden_field_tag :processor_hidden, @computer.processor, id: 'processor_hidden' %>
+    <%= form.select :processor, options_for_select(['i3', 'i5', 'i7', 'i9'], selected: @computer.processor), { prompt: 'Sélectionner un processeur' }, { class: 'form-control' } %>
+    <%= form.text_field :processor, placeholder: 'Ou entrez-le manuellement', class: 'form-control hidden-input' %>
+    <%= hidden_field_tag :processor_hidden, @computer.processor, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :memory, "Mémoire :" %>
-    <%= form.select :memory, options_for_select(['2Go', '4Go', '8Go', '16Go'], selected: @computer.memory), { prompt: 'Sélectionner une mémoire' }, { class: 'form-control', id: 'memory_select' } %>
-    <%= form.text_field :memory, placeholder: 'Ou entrez-le manuellement', class: 'form-control', id: 'memory_input' %>
-    <%= hidden_field_tag :memory_hidden, @computer.memory, id: 'memory_hidden' %>
+    <%= form.select :memory, options_for_select(['2Go', '4Go', '8Go', '16Go'], selected: @computer.memory), { prompt: 'Sélectionner une mémoire' }, { class: 'form-control' } %>
+    <%= form.text_field :memory, placeholder: 'Ou entrez-le manuellement', class: 'form-control hidden-input' %>
+    <%= hidden_field_tag :memory_hidden, @computer.memory, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label "Type de disque dur :" %>
+    <%= form.label :type_disk, "Type de disque dur :" %>
     <%= form.text_field :type_disk, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label "VPN installé :" %>
-    <%= form.check_box :vpn %>
+    <%= form.label :vpn, "VPN installé :" %>
+    <%= form.check_box :vpn, class: 'form-check-input' %>
   </div>
 
   <div class="form-group">
-    <%= form.label "Compte local :" %>
+    <%= form.label :local_account, "Compte local :" %>
     <%= form.text_field :local_account, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label "Mot de passe local :" %>
+    <%= form.label :local_password, "Mot de passe local :" %>
     <%= form.text_field :local_password, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.submit "Sauvegarder", class: 'form-control btn-primary' %>
+    <%= form.label :client_id, "Client :" %>
+    <%= form.collection_select :client_id, @clients, :id, :name, prompt: 'Sélectionner un client', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Sauvegarder", class: 'btn btn-primary' %>
   </div>
 <% end %>

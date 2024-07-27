@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_19_160917) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_27_185746) do
   create_table "clients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "address"
@@ -33,6 +33,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_160917) do
     t.string "local_account"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id", null: false
+    t.index ["client_id"], name: "index_computers_on_client_id"
   end
 
+  add_foreign_key "computers", "clients"
 end

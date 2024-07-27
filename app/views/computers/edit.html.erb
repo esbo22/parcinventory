@@ -1,8 +1,13 @@
 <div class="container">
   <div class="row justify-content-center">
-    <h4 class="mt-4 mb-4 display-4">Modifier l'équipement <%= @computer.id %></h4>
+    <h4 class="mt-4 mb-4">Modifier l'équipement <%= @computer.id %></h4>
   </div>
   <div class="row justify-content-center">
-    <%= render 'form', computer: @computer %>
+    <div class="col-md-8">
+      <%= render 'form', computer: @computer %>
+    </div>
+  </div>
+  <div>
+    <%= link_to "Retour aux équipements", computers_path %>
   </div>
 </div>
