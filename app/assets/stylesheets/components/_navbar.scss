@@ -10,3 +10,31 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+/* Ajuste ces valeurs selon tes besoins */
+.navbar-brand img {
+  max-height: 60px; /* Ajuste la hauteur maximale selon la hauteur de ta navbar */
+  max-width: 200px; /* Ajuste la largeur maximale selon les besoins */
+  height: auto; /* Assure que l'image garde ses proportions */
+  width: auto; /* Assure que l'image garde ses proportions */
+}
+
+
+.navbar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Assure qu'il est au-dessus des autres éléments */
+}
+
+.navbar-nav .nav-item {
+  margin-left: 10px; /* Ajuste l'espacement entre les éléments */
+}
+
+body {
+  padding-top: 56px; /* Ajuster cette valeur en fonction de la hauteur de la navbar */
+}
+

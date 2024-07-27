@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Défini la route root vers l'action home de PagesController
   root 'pages#home'
   # Autres routes
