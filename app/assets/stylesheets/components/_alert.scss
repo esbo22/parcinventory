@@ -1,6 +1,21 @@
+.notice, .alert {
+  position: fixed; /* Fixe la position en haut ou en bas de la page selon la classe */
+  left: 50%;
+  transform: translateX(-50%); /* Centre horizontalement */
+  width: calc(100% - 32px); /* Occupe toute la largeur sauf les marges */
+  padding: 10px;
+  z-index: 1000; /* Assure que le message est au-dessus du contenu */
+}
+
+.notice {
+  top: 0; /* Positionne en haut de la page */
+  background-color: #d4edda;
+  color: #155724;
+}
+
 .alert {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 1000;
+  bottom: 16px; /* Positionne en bas de la page */
+  right: 16px; /* Marges à droite */
+  background-color: #f8d7da;
+  color: #721c24;
 }
