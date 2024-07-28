@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h4 class="mt-4 mb-4 display-4">Ajouter un nouveau client</h4>
+  </div>
+  <div class="row justify-content-center">
+    <%= render 'form', client: @client %>
+  </div>
+  <div>
+    <%= link_to "Retour aux clients", clients_path %>
+  </div>
+</div>
