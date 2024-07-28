@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   # Autres routes
   resources :computers
+  resources :clients
   # Route temporaire pour la page de connexion future pointant vers computers#index
   get 'login', to: 'computers#index'
 end

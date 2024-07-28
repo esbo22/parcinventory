@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h4 class="mt-4 mb-4 display-4">Vue détaillée du client <%= @client.id %></h4>
+  </div>
+  <div class="row justify-content-center">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Nom du client :</th>
+          <td><%= @client.name %></td>
+        </tr>
+        <tr>
+          <th>Adresse :</th>
+          <td><%= @client.address %></td>
+        </tr>
+        <tr>
+          <th>Téléphone :</th>
+          <td><%= @client.phone %></td>
+        </tr>
+        <tr>
+          <th>Localisation :</th>
+          <td><%= @client.location %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= link_to "Editer", edit_client_path(@client) %> |
+    <%= link_to "Retour aux clients", clients_path %>
+    <%= button_to "Détruire la fiche client", @client, method: :delete %>
+  </div>
+</div>
