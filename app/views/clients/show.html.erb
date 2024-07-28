@@ -27,6 +27,48 @@
   <div>
     <%= link_to "Editer", edit_client_path(@client) %> |
     <%= link_to "Retour aux clients", clients_path %>
-    <%= button_to "Détruire la fiche client", @client, method: :delete %>
+    <%= button_to "Détruire la fiche client", @client, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" } %>
+  </div>
+
+  <!-- Section pour afficher les équipements -->
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <h4 class="mt-4 display-4">Liste des équipements</h4>
+    </div>
+    <%= link_to 'Nouvel équipement', new_computer_path, class: "btn btn-primary" %>
+    <% if @computers.present? %>
+      <div class="row justify-content-center">
+        <table class="table table-bordered mt-4">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nom de l'équipement</th>
+              <th scope="col">Fin de vie</th>
+              <th scope="col">Action</th>
+              <th scope="col">Édition</th>
+              <th scope="col">Suppression</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @computers.each do |computer| %>
+              <tr>
+                <td><%= computer.id %></td>
+                <td class="<%= computer.hostname_present? ? 'hostname-present' : 'hostname-absent' %>"><%= computer.hostname %></td>
+                <td class="<%= computer.end_of_life_class %>"><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
+                <td><%= link_to "Regarder", computer_path(computer.id), class: "btn btn-info" %></td>
+                <td><%= link_to "Éditer", edit_computer_path(computer.id), class: "btn btn-warning" %></td>
+                <td>
+                  <%= button_to "Détruire", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="alert alert-info mt-4">
+        <strong>Bienvenue !</strong> Créez votre premier équipement :)
+      </div>
+    <% end %>
   </div>
 </div>

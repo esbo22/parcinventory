@@ -13,10 +13,13 @@
       <ul class="navbar-nav ms-auto"> <!-- Use ms-auto to push items to the right -->
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Clients", "#", class: "nav-link" %>
+            <%= link_to "Clients", clients_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Equipements", computers_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

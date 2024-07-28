@@ -13,13 +13,13 @@
 
 /* Ajuste ces valeurs selon tes besoins */
 .navbar-brand img {
-  max-height: 100px; /* Ajuste la hauteur maximale selon la hauteur de ta navbar */
-  max-width: 100px; /* Ajuste la largeur maximale selon les besoins */
+  max-height: 100px; /* Ajuste la hauteur maximale selon la hauteur de la navbar */
+  max-width: 100px; /* Ajuste la largeur maximale */
   height: auto; /* Assure que l'image garde ses proportions */
   width: auto; /* Assure que l'image garde ses proportions */
 }
 .navbar-logo {
-  width: 150px;  /* Ajustez la largeur selon vos besoins */
+  width: 150px;  /* Ajustez la largeur du logo */
   height: auto;  /* Maintient le ratio de l'image */
 }
 

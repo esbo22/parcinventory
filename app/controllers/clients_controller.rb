@@ -1,12 +1,14 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
-  before_action :set_computers, only: [:new, :edit, :create, :update, :destroy]
+   before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_clients, only: [:new, :edit, :create, :update, :destroy]
+
 
   def index
     @clients = Client.all
   end
 
   def show
+    @computers = @client.computers
   end
 
   def new
