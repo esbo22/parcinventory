@@ -15,3 +15,22 @@ table .hostname-absent {
 table .hostname-present {
   background-color: lightgreen; /* Un vert plus clair pour hostname présent */
 }
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: #f0f0f0;
+}
+
+.button-36,
+.button-37 {
+  cursor: pointer;
+}
+
+.button-36 img,
+.button-37 img {
+  pointer-events: none; /* Ensure the image doesn't capture the click */
+}
+
