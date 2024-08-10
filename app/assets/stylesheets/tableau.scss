@@ -9,11 +9,28 @@ table .tab-name {
 }
 
 table .hostname-absent {
-  background-color: red; /* Fond blanc pour hostname absent */
+  background-color: red; /* Rouge pour hostname absent */
+  color: white;
 }
 
 table .hostname-present {
   background-color: lightgreen; /* Un vert plus clair pour hostname présent */
+  color: black;
+}
+
+table .end-life-danger {
+  background-color: red; /* Rouge pour les équipements en fin de vie imminente */
+  color: white;
+}
+
+table .end-life-warning {
+  background-color: orange; /* Orange pour les équipements en fin de vie proche */
+  color: black;
+}
+
+table .end-life-success {
+  background-color: green; /* Vert pour les équipements encore loin de la fin de vie */
+  color: white;
 }
 
 tr {
@@ -33,4 +50,3 @@ tr:hover {
 .button-37 img {
   pointer-events: none; /* Ensure the image doesn't capture the click */
 }
-

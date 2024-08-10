@@ -1,5 +1,13 @@
 import { Turbo } from "@hotwired/turbo-rails"
-Turbo.session.drive = true; // Assurez-vous que Turbo est activé
+import "bootstrap"
+
+// Code Bootstrap pour activer les tooltips, dropdowns, etc.
+document.addEventListener("turbo:load", function() {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+});
 
 
 console.log("JavaScript is loaded and running");

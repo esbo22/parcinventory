@@ -25,7 +25,8 @@ function classesToArray( value ) {
 
 jQuery.fn.extend( {
 	addClass: function( value ) {
-		var classNames, cur, curValue, className, i, finalValue;
+		var classes, elem, cur, curValue, clazz, j, finalValue,
+			i = 0;
 
 		if ( isFunction( value ) ) {
 			return this.each( function( j ) {
@@ -33,35 +34,36 @@ jQuery.fn.extend( {
 			} );
 		}
 
-		classNames = classesToArray( value );
+		classes = classesToArray( value );
 
-		if ( classNames.length ) {
-			return this.each( function() {
-				curValue = getClass( this );
-				cur = this.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
+		if ( classes.length ) {
+			while ( ( elem = this[ i++ ] ) ) {
+				curValue = getClass( elem );
+				cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
 
 				if ( cur ) {
-					for ( i = 0; i < classNames.length; i++ ) {
-						className = classNames[ i ];
-						if ( cur.indexOf( " " + className + " " ) < 0 ) {
-							cur += className + " ";
+					j = 0;
+					while ( ( clazz = classes[ j++ ] ) ) {
+						if ( cur.indexOf( " " + clazz + " " ) < 0 ) {
+							cur += clazz + " ";
 						}
 					}
 
 					// Only assign if different to avoid unneeded rendering.
 					finalValue = stripAndCollapse( cur );
 					if ( curValue !== finalValue ) {
-						this.setAttribute( "class", finalValue );
+						elem.setAttribute( "class", finalValue );
 					}
 				}
-			} );
+			}
 		}
 
 		return this;
 	},
 
 	removeClass: function( value ) {
-		var classNames, cur, curValue, className, i, finalValue;
+		var classes, elem, cur, curValue, clazz, j, finalValue,
+			i = 0;
 
 		if ( isFunction( value ) ) {
 			return this.each( function( j ) {
@@ -73,41 +75,44 @@ jQuery.fn.extend( {
 			return this.attr( "class", "" );
 		}
 
-		classNames = classesToArray( value );
+		classes = classesToArray( value );
 
-		if ( classNames.length ) {
-			return this.each( function() {
-				curValue = getClass( this );
+		if ( classes.length ) {
+			while ( ( elem = this[ i++ ] ) ) {
+				curValue = getClass( elem );
 
 				// This expression is here for better compressibility (see addClass)
-				cur = this.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
+				cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
 
 				if ( cur ) {
-					for ( i = 0; i < classNames.length; i++ ) {
-						className = classNames[ i ];
+					j = 0;
+					while ( ( clazz = classes[ j++ ] ) ) {
 
 						// Remove *all* instances
-						while ( cur.indexOf( " " + className + " " ) > -1 ) {
-							cur = cur.replace( " " + className + " ", " " );
+						while ( cur.indexOf( " " + clazz + " " ) > -1 ) {
+							cur = cur.replace( " " + clazz + " ", " " );
 						}
 					}
 
 					// Only assign if different to avoid unneeded rendering.
 					finalValue = stripAndCollapse( cur );
 					if ( curValue !== finalValue ) {
-						this.setAttribute( "class", finalValue );
+						elem.setAttribute( "class", finalValue );
 					}
 				}
-			} );
+			}
 		}
 
 		return this;
 	},
 
 	toggleClass: function( value, stateVal ) {
-		var classNames, className, i, self,
-			type = typeof value,
+		var type = typeof value,
 			isValidValue = type === "string" || Array.isArray( value );
+
+		if ( typeof stateVal === "boolean" && isValidValue ) {
+			return stateVal ? this.addClass( value ) : this.removeClass( value );
+		}
 
 		if ( isFunction( value ) ) {
 			return this.each( function( i ) {
@@ -118,20 +123,17 @@ jQuery.fn.extend( {
 			} );
 		}
 
-		if ( typeof stateVal === "boolean" && isValidValue ) {
-			return stateVal ? this.addClass( value ) : this.removeClass( value );
-		}
-
-		classNames = classesToArray( value );
-
 		return this.each( function() {
+			var className, i, self, classNames;
+
 			if ( isValidValue ) {
 
 				// Toggle individual class names
+				i = 0;
 				self = jQuery( this );
+				classNames = classesToArray( value );
 
-				for ( i = 0; i < classNames.length; i++ ) {
-					className = classNames[ i ];
+				while ( ( className = classNames[ i++ ] ) ) {
 
 					// Check each className given, space separated list
 					if ( self.hasClass( className ) ) {
