@@ -1,6 +1,5 @@
-# config/importmap.rb
 pin "application", to: "application.js"
-pin "@hotwired/turbo-rails", to: "https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.5/dist/turbo.umd.min.js"
-pin "jquery", to: "https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
-pin "jquery-ui", to: "https://cdn.jsdelivr.net/npm/jquery-ui-dist/jquery-ui.min.js"
-pin "jquery-ui/widgets/datepicker", to: "https://cdn.jsdelivr.net/npm/jquery-ui-dist/jquery-ui.min.js"
+pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
+pin "jquery", to: "https://code.jquery.com/jquery-3.6.0.min.js"
+pin "bootstrap", to: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+pin "@popperjs/core", to: "@popperjs--core.js" # @2.11.8

@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
-    <h4 class="mt-4 display-4">Liste des équipements</h4>
+    <h4 class="mt-10 display-10">Liste des équipements</h4>
   </div>
-  <%= link_to 'Nouvelle équipement', new_computer_path, class: "look-button" %>
+  <%= link_to 'Nouvelle équipement', new_computer_path, class: "btn btn-primary" %>
   <% if @computers.present? %>
     <div class="row justify-content-center">
       <table class="table table-bordered">
@@ -11,21 +11,19 @@
             <th scope="col" class="tab-index">ID</th>
             <th scope="col" class="tab-index">Nom de l'équipement</th>
             <th scope="col" class="tab-index">Fin de vie</th>
-            <th scope="col" class="tab-index" colspan="1">Action</th>
-            <th scope="col" class="tab-index" colspan="1">Edition</th>
-            <th scope="col" class="tab-index" colspan="1">Suppression</th>
+            <th scope="col" class="tab-index">Suppression</th>
           </tr>
         </thead>
         <tbody>
           <% @computers.each do |computer| %>
-            <tr>
+            <tr onclick="window.location='<%= computer_path(computer) %>'">
               <td class="tab-index"><%= computer.id %></td>
               <td class="<%= computer.hostname_present? ? 'hostname-present' : 'hostname-absent' %>"><%= computer.hostname %></td>
               <td class="<%= computer.end_of_life_class %>"><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
-              <td><%= link_to "Regarder", computer_path(computer.id), class: "button-35" %></td>
-              <td><%= link_to "Edité", edit_computer_path(computer.id), class: "button-36" %></td>
-              <td>
-                <%= button_to "Detruire", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "button-37" %>
+              <td onclick="event.stopPropagation();">
+                <%= button_to computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "button-37" do %>
+                  <img src="<%= asset_path('effacer.svg') %>" alt="Supprimer" />
+                <% end %>
               </td>
             </tr>
           <% end %>

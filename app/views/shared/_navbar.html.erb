@@ -1,5 +1,5 @@
 <!-- app/views/shared/_navbar.html.erb -->
-<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-sm navbar-light bg-light navbar-pi fixed-top">
   <div class="container-fluid">
     <%= link_to "#", class: "navbar-brand" do %>
       <%= image_tag "logo4.png", class: "navbar-logo" %>
@@ -26,9 +26,9 @@
               <%= image_tag "https://avatars.githubusercontent.com/u/33998236?v=4", class: "avatar", alt: "dropdown menu" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+              <%= link_to "Compte", "#", class: "dropdown-item" %>
+              <%= link_to "Paramètre", "#", class: "dropdown-item" %>
+              <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>

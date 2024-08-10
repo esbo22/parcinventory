@@ -9,6 +9,7 @@
 
 // CSS partials
 @import "components/index";
+@import "components/navbar";
 @import "pages/index";
 
 //CSS Alert
@@ -24,4 +25,4 @@
 @import "pages/home";
 
 // CSS computer/edit
-@import "computer-edit.scss";
+@import "computer-edit";
