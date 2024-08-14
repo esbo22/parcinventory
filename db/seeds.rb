@@ -1,35 +1,55 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
 # db/seeds.rb
 
-# supprime toute les data
-Computer.destroy_all
-puts "la table computer à été supprimé"
-Client.destroy_all
-puts "la table client à été supprimé"
+require 'ruby-progressbar'
 
-# Creer les Clients
+# Supprime toutes les données existantes
+Computer.destroy_all
+puts "La table computer a été supprimée"
+Client.destroy_all
+puts "La table client a été supprimée"
+User.destroy_all
+puts "La table user a été supprimée"
+
+# Créer un compte de test spécifique
+test_user = User.create!(
+  email: "test@exemple.com",
+  password: "testtest"
+)
+puts "Utilisateur de test créé : test@exemple.com"
+
+# Créer des utilisateurs supplémentaires pour diversifier les données
+users = [test_user]
+2.times do |i|
+  users << User.create!(
+    email: "user#{i + 1}@example.com",
+    password: "password#{i + 1}"
+  )
+end
+puts "Des utilisateurs supplémentaires ont été créés"
+
+# Créer les clients associés à des utilisateurs
 clients = []
-5.times do |i|
-  clients << Client.create(
+client_count = 5
+client_bar = ProgressBar.create(total: client_count, title: "Création de clients")
+
+client_count.times do |i|
+  clients << Client.create!(
     name: "Client #{i + 1}",
     address: "Address #{i + 1}",
     phone: "123456789#{i}",
-    location: "Location #{i + 1}"
+    location: "Location #{i + 1}",
+    user: users.sample # Associer chaque client à un utilisateur aléatoire
   )
+  client_bar.increment
 end
-puts "la table client à été créer et de nouveaux clients on été généré"
-# Creer les Computers
-10.times do |i|
-  Computer.create(
+puts "La table client a été créée et de nouveaux clients ont été générés"
+
+# Créer les ordinateurs associés aux clients
+computer_count = 10
+computer_bar = ProgressBar.create(total: computer_count, title: "Création de computers")
+
+computer_count.times do |i|
+  Computer.create!(
     hostname: "computer-#{i + 1}",
     date: Date.today - rand(1..1000).days,
     endoflife: Date.today + rand(100..1000).days,
@@ -42,7 +62,8 @@ puts "la table client à été créer et de nouveaux clients on été généré"
     local_account: "local_account#{i + 1}",
     client: clients.sample
   )
+  computer_bar.increment
 end
-puts "la table computer à été créer et de nouveaux computers on été généré"
+puts "La table computer a été créée et de nouveaux computers ont été générés"
 
-puts "Les données de départ ont été créés avec succès"
+puts "Les données de départ ont été créées avec succès"

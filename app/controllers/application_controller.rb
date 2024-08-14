@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    computers_path # Redirige vers la page des ordinateurs après la connexion
+    clients_path # Redirige vers la page des clients après la connexion
   end
 end

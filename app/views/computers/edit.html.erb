@@ -1,6 +1,7 @@
+<!-- app/views/computers/edit.html.erb -->
 <div class="container">
   <div class="row justify-content-center">
-    <h4 class="mt-4 mb-4">Modifier l'équipement <%= @computer.id %></h4>
+    <h4 class="mt-4 mb-4">Modifier l'équipement <%= @computer.id %> pour le client <%= @client.name %></h4>
   </div>
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -8,6 +9,6 @@
     </div>
   </div>
   <div>
-    <%= link_to "Retour aux équipements", computers_path %>
+    <%= link_to "Retour au client", client_path(@client), class: 'btn btn-secondary' %>
   </div>
 </div>

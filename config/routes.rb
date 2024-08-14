@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   # Définir la route root vers l'action home de PagesController
   root 'pages#home'
 
-  # Autres routes
-  resources :computers
-  resources :clients
+  # Routes imbriquées pour les clients et les équipements
+  resources :clients do
+    resources :computers, only: [:new, :create, :index] # Actions disponibles sous clients
+  end
 
-  # Route temporaire pour la page de connexion future pointant vers computers#index
-  get 'login', to: 'computers#index'
+  # Routes générales pour les équipements
+  resources :computers, only: [:show, :edit, :update, :destroy] # Actions générales pour les équipements
+
+  # Route temporaire pour la page de connexion future pointant vers clients#index
+  get 'login', to: 'clients#index'
 end

@@ -1,11 +1,11 @@
-<%= form_with(model: @computer, local: true, data: { turbo: false }, class: 'custom-form') do |form| %>
+<%= form_with(model: [@client, @computer], local: true, data: { turbo: false }, class: 'custom-form') do |form| %>
   <div class="form-group">
     <%= form.label :hostname, "Nom de l'équipement :" %>
     <%= form.text_field :hostname, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :date, "Date :" %>
+    <%= form.label :date, "Date d'achat :" %>
     <%= form.date_select :date, order: [:day, :month, :year], class: 'form-control' %>
   </div>
 
@@ -22,15 +22,11 @@
   <div class="form-group">
     <%= form.label :processor, "Processeur :" %>
     <%= form.select :processor, options_for_select(['i3', 'i5', 'i7', 'i9'], selected: @computer.processor), { prompt: 'Sélectionner un processeur' }, { class: 'form-control' } %>
-    <%= form.text_field :processor, placeholder: 'Ou entrez-le manuellement', class: 'form-control hidden-input' %>
-    <%= hidden_field_tag :processor_hidden, @computer.processor, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :memory, "Mémoire :" %>
     <%= form.select :memory, options_for_select(['2Go', '4Go', '8Go', '16Go'], selected: @computer.memory), { prompt: 'Sélectionner une mémoire' }, { class: 'form-control' } %>
-    <%= form.text_field :memory, placeholder: 'Ou entrez-le manuellement', class: 'form-control hidden-input' %>
-    <%= hidden_field_tag :memory_hidden, @computer.memory, class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -41,6 +37,7 @@
   <div class="form-group">
     <%= form.label :vpn, "VPN installé :" %>
     <%= form.check_box :vpn, class: 'form-check-input' %>
+    <%= form.label :vpn, "Oui", class: 'form-check-label' %>
   </div>
 
   <div class="form-group">
@@ -51,11 +48,6 @@
   <div class="form-group">
     <%= form.label :local_password, "Mot de passe local :" %>
     <%= form.text_field :local_password, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :client_id, "Client :" %>
-    <%= form.collection_select :client_id, @clients, :id, :name, prompt: 'Sélectionner un client', class: 'form-control' %>
   </div>
 
   <div class="form-group">

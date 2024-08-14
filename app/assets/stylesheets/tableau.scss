@@ -33,6 +33,20 @@ table .end-life-success {
   color: white;
 }
 
+.table-container {
+  max-height: 400px; /* Hauteur maximale du tableau */
+  overflow-y: auto; /* Activer le défilement vertical */
+  border: 1px solid #ddd; /* Bordure pour mieux délimiter le conteneur */
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  background-color: #fff; /* Couleur d’arrière-plan pour l’entête */
+  z-index: 1; /* Assurer que l’entête reste au-dessus des lignes */
+}
+
+
 tr {
   cursor: pointer;
 }
