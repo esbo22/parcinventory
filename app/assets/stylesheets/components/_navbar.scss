@@ -1,45 +1,40 @@
 .navbar-pi {
   justify-content: space-between;
   background: white;
+  height: auto; /* Permet à la navbar de s'adapter à son contenu */
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-pi .navbar-collapse {
   flex-grow: 0;
 }
 
-// .navbar-lewagon .navbar-brand img {
-//   width: 40px;
-// }
-
-/* Ajuste ces valeurs selon tes besoins */
 .navbar-brand img {
-  max-height: 100px; /* Ajuste la hauteur maximale selon la hauteur de la navbar */
-  max-width: 100px; /* Ajuste la largeur maximale */
-  height: auto; /* Assure que l'image garde ses proportions */
-  width: auto; /* Assure que l'image garde ses proportions */
+  max-height: 60px; /* Réduire si la hauteur de la navbar est trop grande */
+  width: auto;
 }
+
 .navbar-logo {
-  width: 150px;  /* Ajustez la largeur du logo */
-  height: auto;  /* Maintient le ratio de l'image */
+  width: 150px; 
+  height: auto;
 }
-
-
 
 .navbar {
-  position: fixed;
+  position: fixed; /* Assure que la navbar reste en haut */
   display: flex;
   align-items: center;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Assure qu'il est au-dessus des autres éléments */
+  z-index: 1000; 
+  height: 70px; /* Ajuster cette hauteur selon votre contenu */
 }
 
 .navbar-nav .nav-item {
-  margin-left: 10px; /* Ajuste l'espacement entre les éléments */
+  margin-left: 10px;
 }
 
 body {
-  padding-top: 56px; /* Ajuster cette valeur en fonction de la hauteur de la navbar */
+  padding-top: 75px; /* Correspond à la hauteur de la navbar */
 }
-
