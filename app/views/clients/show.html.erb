@@ -52,7 +52,7 @@
             </thead>
             <tbody>
               <% @computers.each do |computer| %>
-                <tr>
+                <tr onclick="window.location='<%= computer_path(computer) %>'">
                   <td><%= computer.id %></td>
                   <td class="<%= computer.hostname_present? ? 'hostname-present' : 'hostname-absent' %>"><%= computer.hostname %></td>
                   <td class="<%= computer.end_of_life_class %>"><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
