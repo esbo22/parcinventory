@@ -9,10 +9,15 @@
   <%= javascript_importmap_tags %>
 </head>
 <body>
+  <!-- Affichage conditionnel de la navbar -->
   <% if !(controller.controller_name == 'pages' && controller.action_name == 'home') || user_signed_in? %>
     <%= render "shared/navbar" %>
   <% end %>
+
+  <!-- Affichage des messages flash -->
   <%= render "shared/flashes" %>
+
+  <!-- Contenu principal -->
   <%= yield %>
 </body>
 </html>

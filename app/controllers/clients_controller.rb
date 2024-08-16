@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
 
 
   def index
-    @clients = Client.all
+    @clients = current_user.clients
   end
 
   def show
@@ -21,9 +21,9 @@ class ClientsController < ApplicationController
   end
 
   def create
-    @client = Client.new(client_params)
+    @client = current_user.clients.build(client_params)
     if @client.save
-      redirect_to @client, notice: 'Client was successfully created.'
+      redirect_to @client, notice: 'Client créer avec succès.'
     else
       render :new
     end
@@ -31,7 +31,7 @@ class ClientsController < ApplicationController
 
   def update
     if @client.update(client_params)
-      redirect_to @client, notice: 'Client was successfully updated.'
+      redirect_to @client, notice: 'Client mise à jours avec succès.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,6 +43,13 @@ class ClientsController < ApplicationController
   end
 
   private
+
+  def set_clients
+    @client = Client.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Client non trouvé."
+    redirect_to clients_path
+  end
 
   def set_client
     @client = Client.find(params[:id])

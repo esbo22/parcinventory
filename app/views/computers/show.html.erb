@@ -56,7 +56,7 @@
     </td>
      |
      <td onclick="event.stopPropagation();">
-      <%= link_to computers_path, class: "button-35" do %>
+      <%= link_to clients_path, class: "button-35" do %>
         <img src="<%= asset_path('arrow1.png') %>" alt="retour" />
       <% end %>
     <%= button_to "Détruire l'équipement", @computer, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" } %>

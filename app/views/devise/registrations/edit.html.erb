@@ -1,0 +1,45 @@
+<div class="account-page">
+  <div class="card">
+    <div class="banner">
+    </div>
+  <div class="menu">
+    <div class="opener"><span></span><span></span><span></span></div>
+  </div>
+    <h2 class="name"><%= resource_name.to_s.humanize %></h2>
+  <div class="title">Edition</div>
+    <div class="actions">
+      <div class="follow-info">
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :email, required: true, autofocus: true %>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+
+          <%= f.input :password,
+                      hint: "Laissez-le vide si vous ne souhaitez pas le modifier",
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :current_password,
+                      hint: "Nous avons besoin de votre mot de passe actuel pour confirmer vos changements",
+                      required: true,
+                      input_html: { autocomplete: "current-password" } %>
+
+          <%= f.button :submit, "Mise à jour" %>
+        <% end %>
+
+    </div>
+  <div class="desc">Vous pouvez modifier votre compte ici.</div>
+  </div>
+  <div>
+    <h3>Résilier mon compte</h3>
+
+    <div>Vous nous quitté ? <%= button_to "Résilier mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous sûr ?", turbo_confirm: "Êtes-vous sûr ?" }, method: :delete %></div>
+
+      <%= link_to "Retour", :back %>
+    </div>
+</div>

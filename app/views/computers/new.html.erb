@@ -1,11 +1,14 @@
+<!-- app/views/computers/new.html.erb -->
 <div class="container">
   <div class="row justify-content-center">
-    <h4 class="mt-4 mb-4 display-4">Ajouter un nouvel équipement</h4>
+    <h4 class="mt-4 mb-4">Ajouter un nouvel équipement pour le client <%= @client.name %></h4>
   </div>
   <div class="row justify-content-center">
-    <%= render 'form', computer: @computer %>
+    <div class="col-md-8">
+      <%= render 'form', computer: @computer %>
+    </div>
   </div>
   <div>
-    <%= link_to "Retour aux équipements", computers_path %>
+    <%= link_to "Retour au client", client_path(@client), class: 'btn btn-secondary' %>
   </div>
 </div>
