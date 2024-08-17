@@ -1,21 +1,22 @@
+/* Style pour les messages Flash */
 .notice, .alert {
-  position: fixed; /* Fixe la position en haut ou en bas de la page selon la classe */
+  position: absolute; /* Positionnement absolu pour qu'ils se placent sous la navbar */
+  top: 70px; /* Ajustez cette valeur pour qu'elle corresponde à la hauteur de votre navbar */
   left: 50%;
-  transform: translateX(-50%); /* Centre horizontalement */
-  width: calc(100% - 32px); /* Occupe toute la largeur sauf les marges */
+  transform: translateX(-50%);
+  width: calc(100% - 32px); /* Ajustez la largeur si nécessaire */
+  max-width: 800px; /* Limitez la largeur maximale si nécessaire */
+  margin-bottom: 1rem; /* Marge en bas pour éviter les collisions avec le contenu */
   padding: 10px;
-  z-index: 1000; /* Assure que le message est au-dessus du contenu */
+  z-index: 1000;
 }
 
 .notice {
-  top: 0; /* Positionne en haut de la page */
   background-color: #d4edda;
   color: #155724;
 }
 
 .alert {
-  bottom: 16px; /* Positionne en bas de la page */
-  right: 16px; /* Marges à droite */
   background-color: #f8d7da;
   color: #721c24;
 }

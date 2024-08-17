@@ -1,5 +1,6 @@
 import { Turbo } from "@hotwired/turbo-rails"
 import "bootstrap"
+import "./controllers/flash";
 
 // Code Bootstrap pour activer les tooltips, dropdowns, etc.
 document.addEventListener("turbo:load", function() {
