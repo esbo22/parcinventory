@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-center">
-    <h4 class="mt-4 mb-4 display-4">Vue détaillée du client <%= @client.id %></h4>
+    <h4 class="mt-4 mb-4 display-4">Vue détaillée : <%= @client.name %></h4>
   </div>
   <div class="row justify-content-center">
     <table class="table">
@@ -15,7 +15,8 @@
         </tr>
         <tr>
           <th>Téléphone :</th>
-          <td><%= @client.phone %></td>
+          <td><%= @client.formatted_phone %></td>
+
         </tr>
         <tr>
           <th>Localisation :</th>
