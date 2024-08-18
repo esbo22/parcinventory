@@ -1,21 +1,22 @@
 .notice, .alert {
-  position: fixed; /* Fixe la position en haut ou en bas de la page selon la classe */
-  left: 50%;
-  transform: translateX(-50%); /* Centre horizontalement */
-  width: calc(100% - 32px); /* Occupe toute la largeur sauf les marges */
+  position: absolute;
+  top: 70px; /* Ajuste cette valeur pour qu'elle corresponde à la hauteur de votre navbar */
+  right: 16px;
+  width: auto; 
+  max-width: 300px; 
+  margin-bottom: 1rem;
   padding: 10px;
-  z-index: 1000; /* Assure que le message est au-dessus du contenu */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
+/* Supprime les styles personnalisés pour ne pas écraser les couleurs Bootstrap */
 .notice {
-  top: 0; /* Positionne en haut de la page */
-  background-color: #d4edda;
-  color: #155724;
+  /* background-color: #d4edda; */
+  /* color: #155724; */
 }
 
 .alert {
-  bottom: 16px; /* Positionne en bas de la page */
-  right: 16px; /* Marges à droite */
-  background-color: #f8d7da;
-  color: #721c24;
+  /* background-color: #f8d7da; */
+  /* color: #721c24; */
 }

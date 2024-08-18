@@ -1,29 +1,27 @@
 class ClientsController < ApplicationController
-   before_action :set_client, only: [:show, :edit, :update, :destroy]
-  before_action :set_clients, only: [:new, :edit, :create, :update, :destroy]
-
+  before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
-    @clients = current_user.clients
+    @clients = current_user.clients # Récupère tous les clients de l'utilisateur connecté
   end
 
   def show
-    @computers = @client.computers
+    @computers = @client.computers # Récupère tous les ordinateurs associés à ce client
   end
 
   def new
     @client = Client.new
-    @clients = Client.all
+    @clients = current_user.clients # Ajoutez cette ligne pour définir @clients
   end
 
   def edit
-    @clients = Client.all
+     @client = current_user.clients.find(params[:id])
   end
 
   def create
-    @client = current_user.clients.build(client_params)
+    @client = current_user.clients.build(client_params) # Associe le nouveau client à l'utilisateur connecté
     if @client.save
-      redirect_to @client, notice: 'Client créer avec succès.'
+      redirect_to @client, notice: 'Client créé avec succès.'
     else
       render :new
     end
@@ -31,7 +29,7 @@ class ClientsController < ApplicationController
 
   def update
     if @client.update(client_params)
-      redirect_to @client, notice: 'Client mise à jours avec succès.'
+      redirect_to @client, notice: 'Client mis à jour avec succès.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,22 +42,12 @@ class ClientsController < ApplicationController
 
   private
 
-  def set_clients
-    @client = Client.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "Client non trouvé."
-    redirect_to clients_path
-  end
-
   def set_client
-    @client = Client.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "Client non trouvé."
-    redirect_to clients_path
-  end
-
-  def set_computers
-    @computers = Computer.all
+    @client = current_user.clients.find_by(id: params[:id])
+    unless @client
+      flash[:alert] = "Client non trouvé ou non autorisé."
+      redirect_to clients_path
+    end
   end
 
   def client_params
