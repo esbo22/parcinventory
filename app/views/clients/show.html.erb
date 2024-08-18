@@ -45,7 +45,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nom de l'équipement</th>
                 <th scope="col">Fin de vie</th>
-                <th scope="col">Action</th>
+                
                 <th scope="col">Édition</th>
                 <th scope="col">Suppression</th>
               </tr>
@@ -56,10 +56,10 @@
                   <td><%= computer.id %></td>
                   <td class="<%= computer.hostname_present? ? 'hostname-present' : 'hostname-absent' %>"><%= computer.hostname %></td>
                   <td class="<%= computer.end_of_life_class %>"><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
-                  <td><%= link_to "Regarder", computer_path(computer.id), class: "btn btn-info" %></td>
+                  
                   <td><%= link_to "Éditer", edit_computer_path(computer.id), class: "btn btn-warning" %></td>
                   <td>
-                    <%= button_to "Détruire", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-danger" %>
+                    <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "button-destroy" %>
                   </td>
                 </tr>
               <% end %>
