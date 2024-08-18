@@ -2,12 +2,14 @@
 .notice, .alert {
   position: absolute; /* Positionnement absolu pour qu'ils se placent sous la navbar */
   top: 70px; /* Ajustez cette valeur pour qu'elle corresponde à la hauteur de votre navbar */
-  left: 50%;
+  right: 16px;
+  width: auto; 
   transform: translateX(-50%);
   width: calc(100% - 32px); /* Ajustez la largeur si nécessaire */
-  max-width: 800px; /* Limitez la largeur maximale si nécessaire */
+  max-width: 300px; /* Limitez la largeur maximale si nécessaire */
   margin-bottom: 1rem; /* Marge en bas pour éviter les collisions avec le contenu */
   padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre pour la visibilité */
   z-index: 1000;
 }
 
