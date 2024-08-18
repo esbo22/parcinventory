@@ -1,4 +1,53 @@
 /* CSS View */
+/*--------- Button destrou -------------*/
+.button-destroy {
+  width: 10em;
+  position: relative;
+  height: 3.5em;
+  border: 3px ridge #ea1414;
+  outline: none;
+  background-color: transparent;
+  color: black;
+  transition: 1s;
+  border-radius: 0.3em;
+  font-size: 16px;
+/*  font-weight: bold;*/
+  cursor: pointer;
+}
+
+.button-destroy::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  background-color: #f0f0f0;
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+.button-destroy::before {
+  content: "";
+  transform-origin: center;
+  position: absolute;
+  top: 80%;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  background-color: #f0f0f0;
+  transition: 0.5s;
+}
+
+.button-destroy:hover::before, .button-destroy:hover::after {
+  transform: scale(0)
+}
+
+.button-destroy:hover {
+  box-shadow: inset 0px 0px 25px #ea1b14;
+}
+
+/*--------------------------------------------*/
 .button-35 {
   align-items: center;
   background-color: #fff;

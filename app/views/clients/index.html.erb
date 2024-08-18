@@ -21,7 +21,7 @@
               <td class="<%= client.name_present? ? 'name-present' : 'name-absent' %>"><%= client.name %></td>
               
               <td>
-                <%= button_to "Detruire", client_path(client), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "delete-button" %>
+                <%= button_to "Detruire", client_path(client), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "button-destroy" %>
               </td>
             </tr>
           <% end %>
