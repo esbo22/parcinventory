@@ -1,24 +1,22 @@
-/* Style pour les messages Flash */
 .notice, .alert {
-  position: absolute; /* Positionnement absolu pour qu'ils se placent sous la navbar */
-  top: 70px; /* Ajustez cette valeur pour qu'elle corresponde à la hauteur de votre navbar */
+  position: absolute;
+  top: 70px; /* Ajuste cette valeur pour qu'elle corresponde à la hauteur de votre navbar */
   right: 16px;
   width: auto; 
-  transform: translateX(-50%);
-  width: calc(100% - 32px); /* Ajustez la largeur si nécessaire */
-  max-width: 300px; /* Limitez la largeur maximale si nécessaire */
-  margin-bottom: 1rem; /* Marge en bas pour éviter les collisions avec le contenu */
+  max-width: 300px; 
+  margin-bottom: 1rem;
   padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre pour la visibilité */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
+/* Supprime les styles personnalisés pour ne pas écraser les couleurs Bootstrap */
 .notice {
-  background-color: #d4edda;
-  color: #155724;
+  /* background-color: #d4edda; */
+  /* color: #155724; */
 }
 
 .alert {
-  background-color: #f8d7da;
-  color: #721c24;
+  /* background-color: #f8d7da; */
+  /* color: #721c24; */
 }

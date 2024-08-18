@@ -10,8 +10,7 @@
           <tr>
             <th scope="col" class="tab-index">ID</th>
             <th scope="col" class="tab-index">Nom du client</th>
-            <th scope="col" class="tab-index" colspan="1">Action</th>
-            <th scope="col" class="tab-index" colspan="1">Edition</th>
+            
             <th scope="col" class="tab-index" colspan="1">Suppression</th>
           </tr>
         </thead>
@@ -20,8 +19,7 @@
             <tr onclick="window.location='<%= client_path(client) %>'">
               <td class="tab-index"><%= client.id %></td>
               <td class="<%= client.name_present? ? 'name-present' : 'name-absent' %>"><%= client.name %></td>
-              <td><%= link_to "Regarder", client_path(client.id), class: "look-button" %></td>
-              <td><%= link_to "Edité", edit_client_path(client.id), class: "edit-button" %></td>
+              
               <td>
                 <%= button_to "Detruire", client_path(client), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "delete-button" %>
               </td>
