@@ -1,4 +1,46 @@
 /* CSS View */
+/*--------- Button destrou -------------*/
+.button-destroy {
+  font-size: 18px;
+  color: black;
+  font-family: bold;
+  font-weight: 400;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+
+.button-destroy:focus,
+.button-destroy:hover {
+  color: red;
+}
+
+.button-destroy:focus:after,
+.button-destroy:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.button-destroy:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: red;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+
+/*--------------------------------------------*/
 .button-35 {
   align-items: center;
   background-color: #fff;
