@@ -62,7 +62,6 @@
                 <th scope="col">Compte local</th>
                 <th scope="col">Mot de passe local</th>
                 <th scope="col">Commentaires</th>
-                <th scope="col">Édition</th>
                 <th scope="col">Suppression</th>
               </tr>
             </thead>
@@ -133,9 +132,6 @@
                   
                   <!-- Commentaires -->
                   <td><%= computer.commentaire %></td>
-                  
-                  <!-- Édition -->
-                  <td><%= link_to "Éditer", edit_computer_path(computer.id), class: "btn btn-warning" %></td>
                   
                   <!-- Suppression -->
                   <td>
