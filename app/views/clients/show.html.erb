@@ -44,9 +44,24 @@
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nom de l'équipement</th>
+                <th scope="col">Date d'achat</th>
                 <th scope="col">Fin de vie</th>
-                <th scope="col">Action</th>
-                <th scope="col">Édition</th>
+                <th scope="col">Assigné à</th>
+                <th scope="col">Processeur</th>
+                <th scope="col">Mémoire</th>
+                <th scope="col">Type de disque</th>
+                <th scope="col">Système d'exploitation</th>
+                <th scope="col">VPN installé</th>
+                <th scope="col">Accès RDS</th>
+                <th scope="col">Pack Office installé</th>
+                <th scope="col">TeamViewer installé</th>
+                <th scope="col">Active Directory</th>
+                <th scope="col">Connexion réseau</th>
+                <th scope="col">Nom de l'antivirus</th>
+                <th scope="col">Date de début de l'antivirus</th>
+                <th scope="col">Compte local</th>
+                <th scope="col">Mot de passe local</th>
+                <th scope="col">Commentaires</th>
                 <th scope="col">Suppression</th>
               </tr>
             </thead>
@@ -54,12 +69,73 @@
               <% @computers.each do |computer| %>
                 <tr onclick="window.location='<%= computer_path(computer) %>'">
                   <td><%= computer.id %></td>
-                  <td class="<%= computer.hostname_present? ? 'hostname-present' : 'hostname-absent' %>"><%= computer.hostname %></td>
-                  <td class="<%= computer.end_of_life_class %>"><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
-                  <td><%= link_to "Regarder", computer_path(computer.id), class: "btn btn-info" %></td>
-                  <td><%= link_to "Éditer", edit_computer_path(computer.id), class: "btn btn-warning" %></td>
+                  
+                  <!-- Nom de l'équipement -->
+                  <td class="<%= computer.hostname.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.hostname %></td>
+                  
+                  <!-- Date d'achat -->
+                  <td class="<%= computer.date.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.date.present? ? computer.date.strftime('%d/%m/%Y') : 'Non spécifié' %></td>
+                  
+                  <!-- Fin de vie -->
+                  <td class="<%= case (Date.today.year - computer.date.year)
+                                 when 0..3 then 'bg-success text-dark'
+                                 when 4 then 'bg-warning text-dark'
+                                 else 'bg-danger text-white'
+                               end %>">
+                    <%= computer.endoflife.present? ? computer.endoflife.strftime('%d/%m/%Y') : 'Non spécifié' %>
+                  </td>
+                  
+                  <!-- Assigné à -->
+                  <td class="<%= computer.assigned_to.present? ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.assigned_to.presence || 'Non assigné' %></td>
+                  
+                  <!-- Processeur -->
+                  <td class="<%= computer.processor.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.processor %></td>
+                  
+                  <!-- Mémoire -->
+                  <td class="<%= computer.memory.present? && computer.memory.to_i >= 8 ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.memory %></td>
+                  
+                  <!-- Type de disque -->
+                  <td class="<%= %w[SSD NVMe].include?(computer.type_disk) ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.type_disk %></td>
+                  
+                  <!-- Système d'exploitation -->
+                  <td class="<%= computer.os.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.os %></td>
+                  
+                  <!-- VPN installé -->
+                  <td class="<%= computer.vpn ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.vpn ? 'Oui' : 'Non' %></td>
+                  
+                  <!-- Accès RDS -->
+                  <td class="<%= computer.rds ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.rds ? 'Oui' : 'Non' %></td>
+                  
+                  <!-- Pack Office installé -->
+                  <td class="<%= computer.pack_office_installe == 'Oui' ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.pack_office_installe %></td>
+                  
+                  <!-- TeamViewer installé -->
+                  <td class="<%= computer.teamviewer_installe == 'Oui' ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.teamviewer_installe %></td>
+                  
+                  <!-- Active Directory -->
+                  <td class="<%= computer.ad ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.ad ? 'Oui' : 'Non' %></td>
+                  
+                  <!-- Connexion réseau -->
+                  <td class="<%= ['100Mb', 'Téléphone IP', 'Partage de connexion'].include?(computer.reseau) ? 'bg-danger text-white' : 'bg-success text-dark' %>"><%= computer.reseau %></td>
+                  
+                  <!-- Nom de l'antivirus -->
+                  <td class="<%= computer.antivirus_name.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.antivirus_name %></td>
+                  
+                  <!-- Date de début de l'antivirus -->
+                  <td class="<%= computer.antivirus_start_date.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.antivirus_start_date.present? ? computer.antivirus_start_date.strftime('%d/%m/%Y') : 'Non spécifié' %></td>
+                  
+                  <!-- Compte local -->
+                  <td class="<%= computer.local_account.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.local_account %></td>
+                  
+                  <!-- Mot de passe local -->
+                  <td class="<%= computer.local_password.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.local_password %></td>
+                  
+                  <!-- Commentaires -->
+                  <td><%= computer.commentaire %></td>
+                  
+                  <!-- Suppression -->
                   <td>
-                    <%= button_to "Détruire", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-danger" %>
+                    <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "button-destroy" %>
                   </td>
                 </tr>
               <% end %>

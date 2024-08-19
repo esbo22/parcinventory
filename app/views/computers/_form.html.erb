@@ -21,23 +21,70 @@
 
   <div class="form-group">
     <%= form.label :processor, "Processeur :" %>
-    <%= form.select :processor, options_for_select(['i3', 'i5', 'i7', 'i9'], selected: @computer.processor), { prompt: 'Sélectionner un processeur' }, { class: 'form-control' } %>
+    <%= form.select :processor, options_for_select(['i3', 'i5', 'i7', 'i9', 'AMD'], selected: @computer.processor), { prompt: 'Sélectionner un processeur' }, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
     <%= form.label :memory, "Mémoire :" %>
-    <%= form.select :memory, options_for_select(['2Go', '4Go', '8Go', '16Go'], selected: @computer.memory), { prompt: 'Sélectionner une mémoire' }, { class: 'form-control' } %>
+    <%= form.select :memory, options_for_select(['2Go', '4Go', '8Go', '16Go', '32Go'], selected: @computer.memory), { prompt: 'Sélectionner une mémoire' }, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
     <%= form.label :type_disk, "Type de disque dur :" %>
-    <%= form.text_field :type_disk, class: 'form-control' %>
+    <%= form.select :type_disk, options_for_select(['Mécanique', 'SSD', 'NVMe'], selected: @computer.type_disk), { prompt: 'Sélectionner un type de disque' }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :os, "Système d'exploitation :" %>
+    <%= form.select :os, options_for_select(['Windows 10', 'Windows 11', 'Windows 12'], selected: @computer.os), { prompt: 'Sélectionner un OS' }, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
     <%= form.label :vpn, "VPN installé :" %>
     <%= form.check_box :vpn, class: 'form-check-input' %>
     <%= form.label :vpn, "Oui", class: 'form-check-label' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :rds, "Accès RDS :" %>
+    <%= form.check_box :rds, class: 'form-check-input' %>
+    <%= form.label :rds, "Oui", class: 'form-check-label' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :pack_office_installe, "Pack Office installé :" %>
+    <%= form.select :pack_office_installe, options_for_select(['Oui', 'Non'], selected: @computer.pack_office_installe), { prompt: 'Pack Office installé ?' }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :teamviewer_installe, "TeamViewer installé :" %>
+    <%= form.select :teamviewer_installe, options_for_select(['Oui', 'Non'], selected: @computer.teamviewer_installe), { prompt: 'TeamViewer installé ?' }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :ad, "Membre d'un Active Directory :" %>
+    <%= form.check_box :ad, class: 'form-check-input' %>
+    <%= form.label :ad, "Oui", class: 'form-check-label' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :reseau, "Connexion réseau :" %>
+    <%= form.select :reseau, options_for_select(['100Mb', '1Gb', 'Wi-Fi', 'Partage de connexion', 'Téléphone IP'], selected: @computer.reseau), { prompt: 'Sélectionner un type de connexion réseau' }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :antivirus_name, "Nom de l'antivirus installé :" %>
+    <%= form.text_field :antivirus_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :antivirus_duration, "Durée de l'antivirus (en années) :" %>
+    <%= form.select :antivirus_duration, options_for_select([1, 2, 3, 5], selected: @computer.antivirus_duration), { prompt: 'Sélectionner la durée' }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :antivirus_start_date, "Date de début de l'antivirus :" %>
+    <%= form.date_select :antivirus_start_date, order: [:day, :month, :year], class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -48,6 +95,11 @@
   <div class="form-group">
     <%= form.label :local_password, "Mot de passe local :" %>
     <%= form.text_field :local_password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :commentaire, "Commentaires :" %>
+    <%= form.text_area :commentaire, class: 'form-control' %>
   </div>
 
   <div class="form-group">

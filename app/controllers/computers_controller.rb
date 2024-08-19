@@ -21,7 +21,7 @@ class ComputersController < ApplicationController
   def create
     @computer = @client.computers.build(computer_params)
     if @computer.save
-      redirect_to client_path(@client), notice: 'Computer was successfully created.'
+      redirect_to client_path(@client, @computer), notice: 'Ordinateur a été créé avec succès.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class ComputersController < ApplicationController
 
   def update
     if @computer.update(computer_params)
-      redirect_to client_path(@client), notice: 'Computer was successfully updated.'
+      redirect_to client_path(@client, @computer), notice: 'Ordinateur a été mis à jour avec succès.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,6 +44,7 @@ class ComputersController < ApplicationController
 
   def set_computer
     @computer = Computer.find(params[:id])
+    @client = @computer.client
   end
 
   def set_client
@@ -58,6 +59,11 @@ class ComputersController < ApplicationController
   end
 
   def computer_params
-    params.require(:computer).permit(:hostname, :date, :endoflife, :assigned_to, :processor, :memory, :type_disk, :vpn, :local_password, :local_account, :client_id)
+    params.require(:computer).permit(
+      :hostname, :date, :endoflife, :assigned_to, :processor, :memory, :type_disk, 
+      :vpn, :rds, :pack_office_installe, :teamviewer_installe, :ad, :reseau, 
+      :os, :antivirus_name, :antivirus_duration, :antivirus_start_date, 
+      :local_account, :local_password, :commentaire
+    )
   end
 end
