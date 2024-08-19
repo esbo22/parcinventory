@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_17_112648) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_19_104322) do
   create_table "clients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "address"
@@ -35,6 +35,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_17_112648) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "client_id", null: false
+    t.string "lieu"
+    t.string "salarie"
+    t.string "telephone"
+    t.string "os"
+    t.string "antivirus"
+    t.date "date_fin_antivirus"
+    t.string "pack_office_installe"
+    t.string "reseau"
+    t.boolean "teamviewer_installe"
+    t.boolean "ad"
+    t.boolean "rds"
+    t.text "commentaire"
+    t.date "controle_le"
+    t.string "antivirus_name"
+    t.integer "antivirus_duration"
+    t.date "antivirus_start_date"
     t.index ["client_id"], name: "index_computers_on_client_id"
   end
 

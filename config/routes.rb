@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # Routes imbriquées pour les clients et les équipements
   resources :clients do
-    resources :computers, only: [:new, :create, :index] # Actions disponibles sous clients
+    resources :computers, only: [:new, :create, :index, :edit, :update, :show, :destroy]
   end
 
   # Routes générales pour les équipements

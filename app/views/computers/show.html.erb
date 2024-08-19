@@ -49,12 +49,12 @@
     </table>
   </div>
   <div>
-    <td onclick="event.stopPropagation();">
-      <%= link_to edit_computer_path(@computer), class: "button-36" do %>
-        <img src="<%= asset_path('computer-50.png') %>" alt="éditer" />
-      <% end %>
-    </td>
-     |
+   <td onclick="event.stopPropagation();">
+    <%= link_to edit_client_computer_path(@client, @computer), class: "button-36" do %>
+      <img src="<%= asset_path('computer-50.png') %>" alt="éditer" />
+    <% end %>
+  </td>
+
      <td onclick="event.stopPropagation();">
       <%= link_to client_path(@computer.client), class: "button-35" do %>
         <img src="<%= asset_path('arrow1.png') %>" alt="retour" />
