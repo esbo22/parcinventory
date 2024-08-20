@@ -1,0 +1,36 @@
+<!-- app/views/layouts/print.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Impression</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <style>
+    body {
+      background: #fff;
+      color: #000;
+    }
+    @media print {
+      body {
+        margin: 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

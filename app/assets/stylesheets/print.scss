@@ -1,0 +1,67 @@
+/* print.css */
+@media print {
+  /* Adapter le tableau à la largeur de la page imprimée */
+  table {
+    width: 100%;
+    table-layout: fixed; /* Assurer que le tableau ne dépasse pas la largeur de la page */
+    border-collapse: collapse; /* Fusionner les bordures */
+  }
+
+  th, td {
+    border: 1px solid black; /* Bordure noire pour le tableau */
+    padding: 8px; /* Espacement dans les cellules */
+    text-align: left; /* Alignement du texte */
+    font-size: 12px; /* Taille de police réduite pour s'adapter */
+  }
+
+  /* Conserver les couleurs de fond */
+  th {
+    background-color: #f2f2f2; /* Couleur de fond des en-têtes, ajustez au besoin */
+  }
+  
+  /* Couleurs de fond personnalisées pour les cellules */
+  .bg-success {
+    background-color: #28a745 !important; /* Couleur verte pour les cellules avec succès */
+    color: #ffffff !important; /* Texte en blanc */
+  }
+  
+  .bg-warning {
+    background-color: #ffc107 !important; /* Couleur jaune pour les cellules avec avertissement */
+    color: #212529 !important; /* Texte en sombre */
+  }
+  
+  .bg-danger {
+    background-color: #dc3545 !important; /* Couleur rouge pour les cellules avec danger */
+    color: #ffffff !important; /* Texte en blanc */
+  }
+  
+  /* Assurez-vous que les couleurs de texte sont également visibles */
+  .text-dark {
+    color: #343a40 !important; /* Texte sombre */
+  }
+  
+  .text-white {
+    color: #ffffff !important; /* Texte blanc */
+  }
+
+  /* Ajuster la mise en page pour éviter le défilement horizontal */
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden; /* Éviter le défilement */
+  }
+  
+  @page {
+    size: auto; /* Ajuster la taille de la page */
+    margin: 0; /* Supprimer les marges */
+  }
+
+  /* Si le tableau est trop large, ajuster la largeur de certaines colonnes */
+  th, td {
+    max-width: 100px; /* Ajuster la largeur maximale des colonnes */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ajouter des points de suspension pour le texte qui dépasse */
+    white-space: nowrap; /* Empêcher le texte de se casser */
+  }
+}

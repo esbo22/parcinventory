@@ -3,7 +3,7 @@
     <h4 class="mt-4 mb-4 display-4">Vue détaillée : <%= @client.name %></h4>
   </div>
   <div class="row justify-content-center">
-    <table class="table">
+    <table class="table" id="client-details-table">
       <tbody>
         <tr>
           <th>Nom du client :</th>
@@ -24,6 +24,7 @@
       </tbody>
     </table>
   </div>
+
   <div>
     <%= link_to "Editer", edit_client_path(@client) %> |
     <%= link_to "Retour aux clients", clients_path %>
@@ -36,10 +37,11 @@
       <h4 class="mt-4 display-4">Liste des équipements</h4>
     </div>
     <%= link_to 'Nouvel équipement', new_client_computer_path(@client), class: "btn btn-primary" %>
+    
     <% if @computers.present? %>
       <div class="row justify-content-center">
         <div class="table-container">
-          <table class="table table-bordered mt-4">
+          <table class="table table-bordered mt-4" id="equipment-table">
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -69,14 +71,8 @@
               <% @computers.each do |computer| %>
                 <tr onclick="window.location='<%= computer_path(computer) %>'">
                   <td><%= computer.id %></td>
-                  
-                  <!-- Nom de l'équipement -->
                   <td class="<%= computer.hostname.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.hostname %></td>
-                  
-                  <!-- Date d'achat -->
                   <td class="<%= computer.date.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.date.present? ? computer.date.strftime('%d/%m/%Y') : 'Non spécifié' %></td>
-                  
-                  <!-- Fin de vie -->
                   <td class="<%= case (Date.today.year - computer.date.year)
                                  when 0..3 then 'bg-success text-dark'
                                  when 4 then 'bg-warning text-dark'
@@ -84,56 +80,22 @@
                                end %>">
                     <%= computer.endoflife.present? ? computer.endoflife.strftime('%d/%m/%Y') : 'Non spécifié' %>
                   </td>
-                  
-                  <!-- Assigné à -->
                   <td class="<%= computer.assigned_to.present? ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.assigned_to.presence || 'Non assigné' %></td>
-                  
-                  <!-- Processeur -->
                   <td class="<%= computer.processor.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.processor %></td>
-                  
-                  <!-- Mémoire -->
                   <td class="<%= computer.memory.present? && computer.memory.to_i >= 8 ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.memory %></td>
-                  
-                  <!-- Type de disque -->
                   <td class="<%= %w[SSD NVMe].include?(computer.type_disk) ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.type_disk %></td>
-                  
-                  <!-- Système d'exploitation -->
                   <td class="<%= computer.os.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.os %></td>
-                  
-                  <!-- VPN installé -->
                   <td class="<%= computer.vpn ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.vpn ? 'Oui' : 'Non' %></td>
-                  
-                  <!-- Accès RDS -->
                   <td class="<%= computer.rds ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.rds ? 'Oui' : 'Non' %></td>
-                  
-                  <!-- Pack Office installé -->
                   <td class="<%= computer.pack_office_installe == 'Oui' ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.pack_office_installe %></td>
-                  
-                  <!-- TeamViewer installé -->
                   <td class="<%= computer.teamviewer_installe == 'Oui' ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.teamviewer_installe %></td>
-                  
-                  <!-- Active Directory -->
                   <td class="<%= computer.ad ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.ad ? 'Oui' : 'Non' %></td>
-                  
-                  <!-- Connexion réseau -->
                   <td class="<%= ['100Mb', 'Téléphone IP', 'Partage de connexion'].include?(computer.reseau) ? 'bg-danger text-white' : 'bg-success text-dark' %>"><%= computer.reseau %></td>
-                  
-                  <!-- Nom de l'antivirus -->
                   <td class="<%= computer.antivirus_name.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.antivirus_name %></td>
-                  
-                  <!-- Date de début de l'antivirus -->
                   <td class="<%= computer.antivirus_start_date.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.antivirus_start_date.present? ? computer.antivirus_start_date.strftime('%d/%m/%Y') : 'Non spécifié' %></td>
-                  
-                  <!-- Compte local -->
                   <td class="<%= computer.local_account.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.local_account %></td>
-                  
-                  <!-- Mot de passe local -->
                   <td class="<%= computer.local_password.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.local_password %></td>
-                  
-                  <!-- Commentaires -->
                   <td><%= computer.commentaire %></td>
-                  
-                  <!-- Suppression -->
                   <td>
                     <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "button-destroy" %>
                   </td>
@@ -143,9 +105,14 @@
           </table>
         </div>
       </div>
+
+      <!-- Bouton pour afficher la liste des équipements dans une nouvelle fenêtre pour impression -->
+      <div class="row justify-content-center mt-3">
+        <%= link_to 'Afficher la liste des équipements pour impression', print_equipments_client_path(@client), target: "_blank", class: "btn btn-primary" %>
+      </div>
     <% else %>
       <div class="alert alert-info mt-4">
-        <strong>Bienvenue !</strong> Créez votre premier équipement :)
+        <strong>Bienvenue !</strong> Créez votre premier équipement en cliquant sur le bouton ci-dessus.
       </div>
     <% end %>
   </div>

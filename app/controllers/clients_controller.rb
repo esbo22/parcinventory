@@ -40,6 +40,12 @@ class ClientsController < ApplicationController
     redirect_to clients_path, status: :see_other
   end
 
+  def print_equipments
+    @client = Client.find(params[:id])
+    @computers = @client.computers
+    render layout: 'print' # Utilisation d'un layout spécifique pour l'impression
+  end
+
   private
 
   def set_client
