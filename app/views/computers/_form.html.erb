@@ -36,7 +36,7 @@
 
   <div class="form-group">
     <%= form.label :os, "Système d'exploitation :" %>
-    <%= form.select :os, options_for_select(['Windows 10', 'Windows 11', 'Windows 12'], selected: @computer.os), { prompt: 'Sélectionner un OS' }, { class: 'form-control' } %>
+    <%= form.select :os, options_for_select(['Windows 10 Pro', 'Windows 10 Home', 'Windows 11 Pro', 'Windows 11 Home', 'Windows 12 Pro', 'Windows 12 Home', 'Non répertorié'], selected: @computer.os), { prompt: 'Sélectionner un OS' }, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">

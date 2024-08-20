@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   # Routes imbriquées pour les clients et les équipements
   resources :clients do
     resources :computers, only: [:new, :create, :index, :edit, :update, :show, :destroy]
+
+    # Route personnalisée pour imprimer la liste des équipements
+    member do
+      get 'print_equipments', to: 'clients#print_equipments'
+    end
   end
 
   # Routes générales pour les équipements
