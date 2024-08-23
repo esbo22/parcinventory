@@ -10,6 +10,7 @@
 // CSS partials
 @import "components/index";
 @import "components/navbar";
+@import "components/cards_trip";
 @import "pages/index";
 
 //CSS Alert
@@ -33,3 +34,6 @@
 
 // CSS Print
 @import "print";
+
+//CSS Footer
+@import "footer";

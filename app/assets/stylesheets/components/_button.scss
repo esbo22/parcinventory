@@ -40,6 +40,23 @@
   transition-property: width, left;
 }
 
+.btn-ghost {
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 8px 24px;
+  margin: 10px 0px 20px 0px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+  color: #cc0000;
+  padding: 8px 24px;
+}
+
 /*--------------------------------------------*/
 .button-35 {
   align-items: center;
