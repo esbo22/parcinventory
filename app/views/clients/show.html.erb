@@ -2,35 +2,56 @@
   <div class="row justify-content-center">
     <h4 class="mt-4 mb-4 display-4">Vue détaillée : <%= @client.name %></h4>
   </div>
-  <div class="row justify-content-center">
-    <table class="table" id="client-details-table">
-      <tbody>
-        <tr>
-          <th>Nom du client :</th>
-          <td><%= @client.name %></td>
-        </tr>
-        <tr>
-          <th>Téléphone :</th>
-          <td><%= @client.formatted_phone %></td>
-        </tr>
-        <tr>
-          <th>Adresse :</th>
-          <td><%= @client.address %></td>
-        </tr>
-        <tr>
-          <th>Localisation :</th>
-          <td><%= @client.location %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <%# Section fiche client %>
+  <div class="card-trip">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
 
+  <div class="card-trip-infos">
+    <div class="row justify-content-center">
+      <table class="table" id="client-details-table">
+          <tr>
+            <th scope="col">
+              <strong>Nom du client : </strong>
+            </th>
+            <td scope="row">
+              <%= @client.name %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="col">
+              <strong>Téléphone : </strong>
+            </th>
+            <td scope="row">
+              <%= @client.formatted_phone %>
+            </td>
+          </tr>
+            <tr>
+              <th scope="col">
+              <strong>Adresse : </strong>
+              </th>
+              <td scope="row">
+                <%= @client.address %>
+              </td>
+            </tr>
+          <tr>
+            <th scope="col">
+              <strong>Localisation : </strong>
+            </th>
+            <td scope="row">
+              <%= @client.location %> 
+            </td>
+          </tr>
+      </table>
+    </div>
+    <h2 class="card-trip-pricing">Contrat actif</h2>
+    <img src="https://png.pngtree.com/element_our/20190524/ourmid/pngtree-the-companys-general-logo-is-commercially-available-image_1107874.jpg" class="card-trip-user avatar-bordered" />
+  </div>
   <div>
     <%= link_to "Editer", edit_client_path(@client) %> |
     <%= link_to "Retour aux clients", clients_path %>
-    <%= button_to "Détruire la fiche client", @client, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" } %>
+    <%= button_to "Détruire la fiche client", @client, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "btn btn-ghost" %>
   </div>
-
+</div>
   <!-- Section pour afficher les équipements -->
   <div class="container mt-4">
     <div class="row justify-content-center">

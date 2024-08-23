@@ -37,7 +37,8 @@ table .end-life-success {
   max-height: 400px; /* Hauteur maximale du tableau */
   overflow-y: auto; /* Activer le défilement vertical */
   border: 1px solid #ddd; /* Bordure pour mieux délimiter le conteneur */
-}
+  margin-top: 15px;
+} 
 
 .table thead {
   position: sticky;
