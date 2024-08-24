@@ -118,7 +118,7 @@
                   <td class="<%= computer.local_password.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.local_password %></td>
                   <td><%= computer.commentaire %></td>
                   <td>
-                    <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "button-destroy" %>
+                    <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-ghost" %>
                   </td>
                 </tr>
               <% end %>

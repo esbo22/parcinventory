@@ -60,6 +60,6 @@
           <img src="<%= asset_path('arrow1.png') %>" alt="retour" />
         <% end %>
       </td>
-    <%= button_to "Détruire l'équipement", @computer, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" } %>
+    <%= button_to "Détruire l'équipement", @computer, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-ghost" %>
   </div>
 </div>
