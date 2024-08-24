@@ -2,24 +2,26 @@ class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
-    @clients = current_user.clients # Récupère tous les clients de l'utilisateur connecté
+    @clients = current_user.clients
+    if params[:search].present?
+      @clients = @clients.where('name LIKE ?', "%#{params[:search]}%")
+    end
   end
 
   def show
-    @computers = @client.computers # Récupère tous les ordinateurs associés à ce client
+    @computers = @client.computers
   end
 
   def new
     @client = Client.new
-    @clients = current_user.clients # Ajoutez cette ligne pour définir @clients
   end
 
   def edit
-     @client = current_user.clients.find(params[:id])
+    # @client est déjà défini par `set_client`
   end
 
   def create
-    @client = current_user.clients.build(client_params) # Associe le nouveau client à l'utilisateur connecté
+    @client = current_user.clients.build(client_params)
     if @client.save
       redirect_to @client, notice: 'Client créé avec succès.'
     else
@@ -41,9 +43,15 @@ class ClientsController < ApplicationController
   end
 
   def print_equipments
-    @client = Client.find(params[:id])
+    @client = current_user.clients.find(params[:id])
     @computers = @client.computers
-    render layout: 'print' # Utilisation d'un layout spécifique pour l'impression
+    render layout: 'print'
+  end
+
+  def autocomplete
+    query = params[:query]
+    clients = current_user.clients.where('name LIKE ?', "%#{query}%")
+    render json: clients.pluck(:id, :name)
   end
 
   private

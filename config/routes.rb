@@ -22,4 +22,5 @@ Rails.application.routes.draw do
 
   # Route temporaire pour la page de connexion future pointant vers clients#index
   get 'login', to: 'clients#index'
+  get 'clients/autocomplete', to: 'clients#autocomplete'
 end

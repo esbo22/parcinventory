@@ -3,6 +3,19 @@
     <h4 class="mt-4 display-4">Liste des clients</h4>
   </div>
   <%= link_to 'Nouveau client', new_client_path, class: "look-button" %>
+
+  <div class="row justify-content-center mb-4">
+    <div class="form-group">
+      <%= form_with url: clients_path, method: :get, local: true, class: "form-inline" do |form| %>
+        <div class="form-group mr-2">
+          <%= form.text_field :search, placeholder: "Rechercher...", class: "form-control", id: "search-input" %>
+        </div>
+        <%= form.submit "Rechercher", class: "btn btn-primary" %>
+      <% end %>
+      <ul id="autocomplete-results" class="list-group mt-2"></ul>
+    </div>
+  </div>
+
   <% if @clients.present? %>
     <div class="row justify-content-center">
       <table class="table table-bordered">
@@ -10,7 +23,6 @@
           <tr>
             <th scope="col" class="tab-index">ID</th>
             <th scope="col" class="tab-index">Nom du client</th>
-            
             <th scope="col" class="tab-index" colspan="1">Suppression</th>
           </tr>
         </thead>
@@ -19,9 +31,8 @@
             <tr onclick="window.location='<%= client_path(client) %>'">
               <td class="tab-index"><%= client.id %></td>
               <td class="<%= client.name_present? ? 'name-present' : 'name-absent' %>"><%= client.name %></td>
-              
               <td>
-                <%= button_to "supprimer", client_path(client), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "button-destroy" %>
+                <%= button_to "supprimer", client_path(client), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "btn btn-ghost" %>
               </td>
             </tr>
           <% end %>
@@ -31,7 +42,7 @@
   <% else %>
     <div class="p-3 mb-2 bg-light text-dark">
       <span class="text-info font-weight-bold">Bienvenue! </span>
-      Creer votre premier client :)
+      Créez votre premier client :)
     </div>
   <% end %>
 </div>
