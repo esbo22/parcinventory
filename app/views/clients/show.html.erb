@@ -57,7 +57,13 @@
     <div class="row justify-content-center">
       <h4 class="mt-4 display-4">Liste des équipements</h4>
     </div>
-    <%= link_to 'Nouvel équipement', new_client_computer_path(@client), class: "btn btn-primary" %>
+    
+
+    <div class="col-auto">
+      <%= link_to new_client_computer_path(@client), class: "btn" do %>
+        <%= image_tag 'add-computer.svg', alt: 'Nouvelle équipements', class: 'new-client-icon', size: "50x50" %>
+      <% end %>
+    </div>
     
     <% if @computers.present? %>
       <div class="row justify-content-center">
@@ -118,7 +124,7 @@
                   <td class="<%= computer.local_password.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.local_password %></td>
                   <td><%= computer.commentaire %></td>
                   <td>
-                    <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "button-destroy" %>
+                    <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-ghost" %>
                   </td>
                 </tr>
               <% end %>

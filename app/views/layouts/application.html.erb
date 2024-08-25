@@ -10,34 +10,36 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= stylesheet_link_tag 'print', media: 'print' %>
 
-  
-  <!-- CDN jsPDF et autoTable, à conserver uniquement si utilisé ailleurs -->
+  <!-- jQuery et jQuery UI pour l'autocomplétion -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+  <%= javascript_include_tag 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js' %>
+  <%= stylesheet_link_tag 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' %>
+
+  <!-- CDN jsPDF et autoTable -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
-  <!-- Affichage conditionnel de la navbar -->
   <% if !(controller.controller_name == 'pages' && controller.action_name == 'home') || user_signed_in? %>
     <%= render "shared/navbar" %>
   <% end %>
 
-  <!-- Affichage des messages flash -->
   <%= render "shared/flashes" %>
 
-  <!-- Contenu principal -->
   <%= yield %>
+
   <div class="footer">
-  <div class="footer-links">
-    <a href="https://github.com/esbo22/parcinventory"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <div class="footer-links">
+      <a href="https://github.com/esbo22/parcinventory"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="footer-copyright">
+      This footer is created by <i class="fas fa-heart"></i> Esbo22
+    </div>
   </div>
-  <div class="footer-copyright">
-    This footer is created by <i class="fas fa-heart"></i> Esbo22
-  </div>
-</div>
 
 </body>
 </html>

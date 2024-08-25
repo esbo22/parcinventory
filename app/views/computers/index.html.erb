@@ -21,7 +21,7 @@
               <td class="<%= computer.hostname_present? ? 'hostname-present' : 'hostname-absent' %>"><%= computer.hostname %></td>
               <td class="<%= computer.end_of_life_class %>"><%= computer.endoflife.strftime('%d/%m/%Y') %></td>
               <td onclick="event.stopPropagation();">
-                <%= button_to computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "button-37" do %>
+                <%= button_to computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-ghost" do %>
                   <img src="<%= asset_path('effacer.svg') %>" alt="Supprimer" />
                 <% end %>
               </td>
