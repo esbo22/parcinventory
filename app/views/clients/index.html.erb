@@ -54,3 +54,15 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  $(function() {
+    $('#search-input').autocomplete({
+      source: "<%= autocomplete_clients_path %>",
+      minLength: 2,
+      select: function(event, ui) {
+        window.location.href = '/clients/' + ui.item.value;
+      }
+    });
+  });
+</script>

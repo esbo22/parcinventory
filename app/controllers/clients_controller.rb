@@ -49,9 +49,9 @@ class ClientsController < ApplicationController
   end
 
   def autocomplete
-    query = params[:query]
-    clients = current_user.clients.where('name LIKE ?', "%#{query}%")
-    render json: clients.pluck(:id, :name)
+    query = params[:term] # jQuery UI envoie 'term' comme paramètre pour l'autocomplétion
+    clients = current_user.clients.where('name LIKE ?', "%#{query}%").limit(10)
+    render json: clients.map { |client| { label: client.name, value: client.id } }
   end
 
   private
