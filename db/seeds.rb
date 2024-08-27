@@ -36,7 +36,7 @@ client_count.times do |i|
   clients << Client.create!(
     name: "Client #{i + 1}",
     address: "Address #{i + 1}",
-    phone: "123456789#{i}",
+    phone: "0#{rand(100000000..999999999)}", # Numéro de téléphone valide
     location: "Location #{i + 1}",
     user: users.sample # Associer chaque client à un utilisateur aléatoire
   )
@@ -60,6 +60,7 @@ computer_count.times do |i|
     vpn: [true, false].sample,
     local_password: "password#{i + 1}",
     local_account: "local_account#{i + 1}",
+    os: ["Windows", "Linux", "macOS"].sample,  # Ajout du champ `os`
     client: clients.sample
   )
   computer_bar.increment
