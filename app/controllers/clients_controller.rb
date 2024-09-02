@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: [:show, :edit, :update, :destroy, :print_equipments]
 
   def index
     @clients = current_user.clients
@@ -43,7 +43,6 @@ class ClientsController < ApplicationController
   end
 
   def print_equipments
-    @client = current_user.clients.find(params[:id])
     @computers = @client.computers
     render layout: 'print'
   end
