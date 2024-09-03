@@ -4,11 +4,11 @@
   </div>
   <%# Section fiche client %>
   <div class="card-trip">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
 
-  <div class="card-trip-infos">
-    <div class="row justify-content-center">
-      <table class="table" id="client-details-table">
+    <div class="card-trip-infos">
+      <div class="row justify-content-center">
+        <table class="table" id="client-details-table">
           <tr>
             <th scope="col">
               <strong>Nom du client : </strong>
@@ -25,14 +25,14 @@
               <%= @client.formatted_phone %>
             </td>
           </tr>
-            <tr>
-              <th scope="col">
+          <tr>
+            <th scope="col">
               <strong>Adresse : </strong>
-              </th>
-              <td scope="row">
-                <%= @client.address %>
-              </td>
-            </tr>
+            </th>
+            <td scope="row">
+              <%= @client.address %>
+            </td>
+          </tr>
           <tr>
             <th scope="col">
               <strong>Localisation : </strong>
@@ -41,27 +41,30 @@
               <%= @client.location %> 
             </td>
           </tr>
-      </table>
+        </table>
+      </div>
+      <h2 class="card-trip-pricing">Contrat actif</h2>
+      <img src="https://png.pngtree.com/element_our/20190524/ourmid/pngtree-the-companys-general-logo-is-commercially-available-image_1107874.jpg" class="card-trip-user avatar-bordered" />
     </div>
-    <h2 class="card-trip-pricing">Contrat actif</h2>
-    <img src="https://png.pngtree.com/element_our/20190524/ourmid/pngtree-the-companys-general-logo-is-commercially-available-image_1107874.jpg" class="card-trip-user avatar-bordered" />
+    <div>
+      <%= link_to "Editer", edit_client_path(@client) %> |
+      <%= link_to "Retour aux clients", clients_path %>
+      <%= button_to "Détruire la fiche client", @client, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "btn btn-ghost" %>
+    </div>
   </div>
-  <div>
-    <%= link_to "Editer", edit_client_path(@client) %> |
-    <%= link_to "Retour aux clients", clients_path %>
-    <%= button_to "Détruire la fiche client", @client, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "btn btn-ghost" %>
-  </div>
-</div>
+
   <!-- Section pour afficher les équipements -->
   <div class="container mt-4">
     <div class="row justify-content-center">
       <h4 class="mt-4 display-4">Liste des équipements</h4>
     </div>
-    
 
     <div class="col-auto">
       <%= link_to new_client_computer_path(@client), class: "btn" do %>
         <%= image_tag 'add-computer.svg', alt: 'Nouvelle équipements', class: 'new-client-icon', size: "50x50" %>
+        <div>
+          <h4>Ajouter un nouvel équipement.</h4>
+        </div>
       <% end %>
     </div>
     
