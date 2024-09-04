@@ -1,3 +1,4 @@
+<!-- app/views/layouts/print.html.erb -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,37 +6,31 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag "application", media: "all" %>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      font-size: 10px;
+      background: #fff;
+      color: #000;
     }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-
-    .page-break {
-      page-break-before: always;
+    @media print {
+      body {
+        margin: 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <%= yield %>
-  </div>
+  <%= yield %>
 </body>
 </html>
