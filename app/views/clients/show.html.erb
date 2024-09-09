@@ -88,7 +88,7 @@
                   <%= image_tag('table/user.svg', alt: 'User', title: 'Machine assigné à :', width: 24, height: 24) %>
                 </th>
                 <th scope="col">
-                  <%= image_tag 'table/CPU.svg', alt: 'CPU', title: "Processeur de la machine", class: 'icon', 'data-bs-toggle': 'tooltip', 'data-bs-placement': 'top' %>
+                  <%= image_tag('table/CPU.svg', alt: 'CPU', title: "Processeur de la machine", width: 24, height: 24) %>
 
                 </th>
                 <th scope="col">
@@ -136,41 +136,153 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <% @computers.each do |computer| %>
-                <tr onclick="window.location='<%= computer_path(computer) %>'">
-                  <td><%= computer.id %></td>
-                  <td class="<%= computer.hostname.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.hostname %></td>
-                  <td class="<%= computer.date.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.date.present? ? computer.date.strftime('%d/%m/%Y') : 'Non spécifié' %></td>
-                  <td class="<%= case (Date.today.year - computer.date.year)
-                                 when 0..3 then 'bg-success text-dark'
-                                 when 4 then 'bg-warning text-dark'
-                                 else 'bg-danger text-white'
-                               end %>">
-                    <%= computer.endoflife.present? ? computer.endoflife.strftime('%d/%m/%Y') : 'Non spécifié' %>
-                  </td>
-                  <td class="<%= computer.assigned_to.present? ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.assigned_to.presence || 'Non assigné' %></td>
-                  <td class="<%= computer.processor.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.processor %></td>
-                  <td class="<%= computer.memory.present? && computer.memory.to_i >= 8 ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.memory %></td>
-                  <td class="<%= %w[SSD NVMe].include?(computer.type_disk) ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.type_disk %></td>
-                  <td class="<%= computer.os.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.os %></td>
-                  <td class="<%= computer.vpn ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.vpn ? 'Oui' : 'Non' %></td>
-                  <td class="<%= computer.rds ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.rds ? 'Oui' : 'Non' %></td>
-                  <td class="<%= computer.pack_office_installe == 'Oui' ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.pack_office_installe %></td>
-                  <td class="<%= computer.teamviewer_installe == 'Oui' ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.teamviewer_installe %></td>
-                  <td class="<%= computer.ad ? 'bg-success text-dark' : 'bg-warning text-dark' %>"><%= computer.ad ? 'Oui' : 'Non' %></td>
-                  <td class="<%= ['100Mb', 'Téléphone IP', 'Partage de connexion'].include?(computer.reseau) ? 'bg-danger text-white' : 'bg-success text-dark' %>"><%= computer.reseau %></td>
-                  <td class="<%= computer.antivirus_name.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.antivirus_name %></td>
-                  <td class="<%= computer.antivirus_start_date.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.antivirus_start_date.present? ? computer.antivirus_start_date.strftime('%d/%m/%Y') : 'Non spécifié' %></td>
-                  <td class="<%= computer.local_account.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.local_account %></td>
-                  <td class="<%= computer.local_password.present? ? 'bg-success text-dark' : 'bg-danger text-white' %>"><%= computer.local_password %></td>
-                  <td><%= computer.commentaire %></td>
-                  <td>
-                    <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-ghost" %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
+              <tbody>
+                <% @computers.each do |computer| %>
+                  <tr onclick="window.location='<%= computer_path(computer) %>'">
+                    <td class="align-middle text-center"><%= computer.id %></td>
+                    
+                    <!-- Hostname -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.hostname.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.hostname.presence || 'N.C.' %>
+                      </span>
+                    </td>
+                    
+                    <!-- Date d'achat -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.date.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.date.present? ? computer.date.strftime('%d/%m/%Y') : 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Date de fin de vie estimée -->
+                    <td class="align-middle text-center">
+                      <span class="<%= case (Date.today.year - (computer.date&.year || 0))
+                                         when 0..3 then 'badge rounded-pill bg-success text-dark'
+                                         when 4 then 'badge rounded-pill bg-warning text-dark'
+                                         else 'badge rounded-pill bg-danger text-white'
+                                       end %>">
+                        <%= computer.endoflife.present? ? computer.endoflife.strftime('%d/%m/%Y') : 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Assigné à -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.assigned_to.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.assigned_to.presence || 'Non assigné' %>
+                      </span>
+                    </td>
+
+                    <!-- Processeur -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.processor.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.processor.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Mémoire -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.memory.present? && computer.memory.to_i >= 8 ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-danger text-white' %>">
+                        <%= computer.memory.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Type de disque -->
+                    <td class="align-middle text-center">
+                      <span class="<%= %w[SSD NVMe].include?(computer.type_disk) ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-danger text-white' %>">
+                        <%= computer.type_disk.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- OS -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.os.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.os.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- VPN -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.vpn ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.vpn ? 'Oui' : 'Non' %>
+                      </span>
+                    </td>
+
+                    <!-- RDS -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.rds ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.rds ? 'Oui' : 'Non' %>
+                      </span>
+                    </td>
+
+                    <!-- Pack Office -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.pack_office_installe == 'Oui' ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-danger text-white' %>">
+                        <%= computer.pack_office_installe.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- TeamViewer -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.teamviewer_installe.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.teamviewer_installe.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Active Directory -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.ad ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.ad ? 'Oui' : 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Réseau -->
+                    <td class="align-middle text-center">
+                      <span class="<%= ['100Mb', 'Téléphone IP', 'Partage de connexion'].include?(computer.reseau) ? 'badge rounded-pill bg-danger text-white' : 'badge rounded-pill bg-success text-dark' %>">
+                        <%= computer.reseau.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Antivirus -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.antivirus_name.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.antivirus_name.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Date d'installation Antivirus -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.antivirus_start_date.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.antivirus_start_date.present? ? computer.antivirus_start_date.strftime('%d/%m/%Y') : 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Compte local -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.local_account.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.local_account.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Mot de passe local -->
+                    <td class="align-middle text-center">
+                      <span class="<%= computer.local_password.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                        <%= computer.local_password.presence || 'N.C.' %>
+                      </span>
+                    </td>
+
+                    <!-- Commentaire -->
+                    <td class="align-middle text-center">
+                      <%= computer.commentaire.presence || 'N.C.' %>
+                    </td>
+
+                    <!-- Supprimer équipement -->
+                    <td class="align-middle text-center">
+                      <%= button_to "Supprimer", computer_path(computer), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet équipement ?" }, class: "btn btn-ghost" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
           </table>
         </div>
       </div>
