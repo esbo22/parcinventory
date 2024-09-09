@@ -1,6 +1,6 @@
 <%= form_with(model: [@client, @computer], local: true, data: { turbo: false }, class: 'custom-form') do |form| %>
   <div class="form-group">
-    <%= form.label :hostname, "Nom de l'équipement :" %>
+    <%= form.label :hostname, "* Nom de l'équipement :" %>
     <%= form.text_field :hostname, class: 'form-control' %>
   </div>
 
@@ -15,17 +15,17 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :assigned_to, "Assigné à :" %>
+    <%= form.label :assigned_to, "* Assigné à :" %>
     <%= form.text_field :assigned_to, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :processor, "Processeur :" %>
+    <%= form.label :processor, "* Processeur :" %>
     <%= form.select :processor, options_for_select(['i3', 'i5', 'i7', 'i9', 'AMD'], selected: @computer.processor), { prompt: 'Sélectionner un processeur' }, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
-    <%= form.label :memory, "Mémoire :" %>
+    <%= form.label :memory, "* Mémoire :" %>
     <%= form.select :memory, options_for_select(['2Go', '4Go', '8Go', '16Go', '32Go'], selected: @computer.memory), { prompt: 'Sélectionner une mémoire' }, { class: 'form-control' } %>
   </div>
 
@@ -35,7 +35,7 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :os, "Système d'exploitation :" %>
+    <%= form.label :os, "* Système d'exploitation :" %>
     <%= form.select :os, options_for_select(['Windows 10 Pro', 'Windows 10 Home', 'Windows 11 Pro', 'Windows 11 Home', 'Windows 12 Pro', 'Windows 12 Home', 'Non répertorié'], selected: @computer.os), { prompt: 'Sélectionner un OS' }, { class: 'form-control' } %>
   </div>
 
@@ -73,13 +73,13 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :antivirus_name, "Nom de l'antivirus installé :" %>
+    <%= form.label :antivirus_name, "* Nom de l'antivirus installé :" %>
     <%= form.text_field :antivirus_name, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :antivirus_duration, "Durée de l'antivirus (en années) :" %>
-    <%= form.select :antivirus_duration, options_for_select([1, 2, 3, 5], selected: @computer.antivirus_duration), { prompt: 'Sélectionner la durée' }, { class: 'form-control' } %>
+    <%= form.label :antivirus_duration, "* Durée de l'antivirus (en années) :" %>
+    <%= form.select :antivirus_duration, options_for_select([1, 2, 3, 5, 'Gratuit'], selected: @computer.antivirus_duration), { prompt: 'Sélectionner la durée' }, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
