@@ -1,4 +1,4 @@
-/* footers.css */
+/* footers.scss */
 
 /* Styles pour le footer */
 .footer {
@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   height: 100px;
-  padding: 0px 50px;
+  padding: 0 50px;
   color: rgba(0, 0, 0, 0.3);
   width: 100%;
   margin-top: auto; /* Pousse le footer vers le bas si le contenu est insuffisant */
@@ -16,6 +16,7 @@
 /* Si le parent direct est flexible */
 body, html {
   height: 100%;
+  margin: 0; /* Supprime les marges par défaut */
 }
 
 .wrapper {
@@ -38,7 +39,7 @@ body, html {
   opacity: 0.15;
   text-decoration: none;
   font-size: 24px;
-  padding: 0px 10px;
+  padding: 0 10px;
 }
 
 .footer-links a:hover {
