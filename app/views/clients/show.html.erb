@@ -143,14 +143,14 @@
                     
                     <!-- Hostname -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.hostname.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.hostname.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.hostname.presence || 'N.C.' %>
                       </span>
                     </td>
                     
                     <!-- Date d'achat -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.date.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.date.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.date.present? ? computer.date.strftime('%d/%m/%Y') : 'N.C.' %>
                       </span>
                     </td>
@@ -158,8 +158,8 @@
                     <!-- Date de fin de vie estimée -->
                     <td class="align-middle text-center">
                       <span class="<%= case (Date.today.year - (computer.date&.year || 0))
-                                         when 0..3 then 'badge rounded-pill bg-success text-dark'
-                                         when 4 then 'badge rounded-pill bg-warning text-dark'
+                                         when 0..3 then 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                         when 4 then 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'
                                          else 'badge rounded-pill bg-danger text-white'
                                        end %>">
                         <%= computer.endoflife.present? ? computer.endoflife.strftime('%d/%m/%Y') : 'N.C.' %>
@@ -168,105 +168,105 @@
 
                     <!-- Assigné à -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.assigned_to.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.assigned_to.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.assigned_to.presence || 'Non assigné' %>
                       </span>
                     </td>
 
                     <!-- Processeur -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.processor.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.processor.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.processor.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- Mémoire -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.memory.present? && computer.memory.to_i >= 8 ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-danger text-white' %>">
+                      <span class="<%= computer.memory.present? && computer.memory.to_i >= 8 ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
                         <%= computer.memory.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- Type de disque -->
                     <td class="align-middle text-center">
-                      <span class="<%= %w[SSD NVMe].include?(computer.type_disk) ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-danger text-white' %>">
+                      <span class="<%= %w[SSD NVMe].include?(computer.type_disk) ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
                         <%= computer.type_disk.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- OS -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.os.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.os.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.os.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- VPN -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.vpn ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.vpn ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.vpn ? 'Oui' : 'Non' %>
                       </span>
                     </td>
 
                     <!-- RDS -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.rds ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.rds ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.rds ? 'Oui' : 'Non' %>
                       </span>
                     </td>
 
                     <!-- Pack Office -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.pack_office_installe == 'Oui' ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-danger text-white' %>">
+                      <span class="<%= computer.pack_office_installe == 'Oui' ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
                         <%= computer.pack_office_installe.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- TeamViewer -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.teamviewer_installe.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.teamviewer_installe.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.teamviewer_installe.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- Active Directory -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.ad ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.ad ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.ad ? 'Oui' : 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- Réseau -->
                     <td class="align-middle text-center">
-                      <span class="<%= ['100Mb', 'Téléphone IP', 'Partage de connexion'].include?(computer.reseau) ? 'badge rounded-pill bg-danger text-white' : 'badge rounded-pill bg-success text-dark' %>">
+                      <span class="<%= ['100Mb', 'Téléphone IP', 'Partage de connexion'].include?(computer.reseau) ? 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' : 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' %>">
                         <%= computer.reseau.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- Antivirus -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.antivirus_name.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.antivirus_name.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.antivirus_name.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- Date d'installation Antivirus -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.antivirus_start_date.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.antivirus_start_date.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.antivirus_start_date.present? ? computer.antivirus_start_date.strftime('%d/%m/%Y') : 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- Compte local -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.local_account.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.local_account.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.local_account.presence || 'N.C.' %>
                       </span>
                     </td>
 
                     <!-- Mot de passe local -->
                     <td class="align-middle text-center">
-                      <span class="<%= computer.local_password.present? ? 'badge rounded-pill bg-success text-dark' : 'badge rounded-pill bg-warning text-dark' %>">
+                      <span class="<%= computer.local_password.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
                         <%= computer.local_password.presence || 'N.C.' %>
                       </span>
                     </td>
