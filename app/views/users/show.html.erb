@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header text-center">
+          <h2>Profil de <%= current_user.first_name %> <%= current_user.last_name %></h2>
+        </div>
+        <div class="card-body text-center">
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, class: "rounded-circle img-thumbnail", size: "150x150" %>
+          <% else %>
+            <%= image_tag "default-avatar.png", class: "rounded-circle img-thumbnail", size: "150x150" %> <!-- Fichier par défaut si l'utilisateur n'a pas d'avatar -->
+          <% end %>
+          <hr>
+          <p><strong>Email :</strong> <%= current_user.email %></p>
+          <p><strong>Prénom :</strong> <%= current_user.first_name %></p>
+          <p><strong>Nom :</strong> <%= current_user.last_name %></p>
+          <hr>
+          <div class="d-flex justify-content-center">
+            <%= link_to 'Modifier mon profil', edit_user_registration_path, class: "btn btn-outline-primary mx-2" %>
+            <%= link_to 'Changer mon mot de passe', edit_user_registration_path(anchor: "password"), class: "btn btn-outline-warning mx-2" %>
+            <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger mx-2" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

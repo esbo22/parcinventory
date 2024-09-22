@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  resource :user, only: [:show]
+  
   root 'pages#home'
 
   resources :clients do
