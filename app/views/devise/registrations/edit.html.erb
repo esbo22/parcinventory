@@ -28,6 +28,8 @@
                       hint: "Nous avons besoin de votre mot de passe actuel pour confirmer vos changements",
                       required: true,
                       input_html: { autocomplete: "current-password" } %>
+          <%= f.label :avatar %>
+          <%= f.file_field :avatar %>
 
           <%= f.button :submit, "Mise à jour" %>
         <% end %>
