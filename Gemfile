@@ -12,6 +12,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "jquery-rails"
 gem "jbuilder"
+gem 'mini_magick', '~> 5.0', '>= 5.0.1'
 gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "bootstrap", "~> 5.2"
