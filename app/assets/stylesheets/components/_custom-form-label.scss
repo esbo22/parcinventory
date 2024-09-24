@@ -1,0 +1,13 @@
+.custom-form-label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  font-weight: bold; /* Optionnel, pour mettre en avant les labels */
+}
+
+.custom-form-control {
+  width: 100%;
+  padding: 10px;  /* Optionnel, pour une meilleure ergonomie */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

@@ -3,22 +3,27 @@
 <head>
   <title>Parcinventory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: "all", "rel": "stylesheet" %>
-  <%= javascript_importmap_tags %>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
+
+  <!-- Stylesheets -->
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: "all" %>
   <%= stylesheet_link_tag 'print', media: 'print' %>
 
   <!-- jQuery et jQuery UI pour l'autocomplétion -->
-  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <%= javascript_include_tag 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js' %>
   <%= stylesheet_link_tag 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' %>
 
   <!-- CDN jsPDF et autoTable -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Rails JS (importmap) -->
+  <%= javascript_importmap_tags %>
 </head>
+
 <body>
   <div class="wrapper">
     <% if !(controller.controller_name == 'pages' && controller.action_name == 'home') || user_signed_in? %>
@@ -35,5 +40,11 @@
     <!-- Footer -->
     <%= render "shared/footers" %>
   </div>
+
+  <!-- Bootstrap 5 Bundle (inclut Popper.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS Custom -->
+  <%= javascript_include_tag 'application', defer: true %>
 </body>
 </html>
