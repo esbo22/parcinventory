@@ -71,3 +71,4 @@ Ce projet est sous une licence restrictive. Vous pouvez utiliser ce code à titr
 ## Auteurs et Crédit
 - **esbo22** - *Développeur principal* - [Profil GitHub](https://github.com/esbo22)
 - Merci à [Ruby on Rails](https://rubyonrails.org/) pour leur framework fantastique.
+- Merci aux contributeurs pour les gems utilisé.
