@@ -4,8 +4,15 @@ class User < ApplicationRecord
   has_many :clients, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   has_one_attached :avatar
+
   validate :avatar_size
+
+  def avatar_thumbnail
+    # avatar.variant(resize_to_fill: [150, 150]).processed (sans formatage)
+    avatar.variant(resize_to_fill: [150, 150], format: :webp).processed
+  end
   
   private
 
