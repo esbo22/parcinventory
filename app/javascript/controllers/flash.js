@@ -1,8 +1,7 @@
 // app/javascript/controllers/flash.js
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Ajout d'un log pour vérifier que le script est exécuté
-  console.log('Flash messages script loaded');
+document.addEventListener('turbo:load', () => {
+  console.log('Flash messages script loaded');  // Confirmer que le script est chargé
 
   setTimeout(() => {
     const flashMessages = document.querySelectorAll('.alert'); // Assurez-vous d'utiliser la bonne classe
@@ -14,5 +13,5 @@ document.addEventListener('DOMContentLoaded', () => {
         message.remove(); // Enlève l'élément après la transition
       }, 500); // Temps pour que le message disparaisse complètement
     });
-  }, 5000); // Temps avant que le message commence à disparaître (5 secondes)
+  }, 3000); // Temps avant que le message commence à disparaître (5 secondes)
 });

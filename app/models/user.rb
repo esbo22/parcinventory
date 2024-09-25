@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :avatar
+  after_commit :resize_avatar, if: :avatar_attached?
 
   validate :avatar_size
 
@@ -15,6 +16,22 @@ class User < ApplicationRecord
   end
   
   private
+
+  def avatar_attached?
+    avatar.attached?
+  end
+
+
+  def resize_avatar
+    if avatar.attached?
+      # Redimensionner et convertir l'image
+      avatar.variant(resize_to_fill: [150, 150], format: :webp).processed
+    else
+      # Gérer le cas où aucun avatar n'est attaché
+      Rails.logger.info "Aucun avatar n'est attaché."
+    end
+  end
+
 
   def avatar_size
     if avatar.attached? && avatar.byte_size > 2.megabytes
