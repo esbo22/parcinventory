@@ -15,8 +15,12 @@
       </div>
 
       <!-- Avatar Preview Section -->
-      <div class="text-center mb-4">
+      <%# <div class="text-center mb-4">
         <%= image_tag(resource.avatar.attached? ? url_for(resource.avatar) : 'default-avatar.png', class: 'img-thumbnail rounded-circle avatar-preview', alt: 'Avatar') %>
+      <%# </div> %>
+
+      <div class="text-center mb-4">
+        <%= image_tag(resource.avatar.attached? ? url_for(resource.avatar_thumbnail) : 'default-avatar.png', class: 'img-thumbnail rounded-circle avatar-preview', alt: 'Avatar', loading: 'lazy') %>
       </div>
 
       <!-- Edit Form Section -->
@@ -33,6 +37,18 @@
                 <div class="mb-3">
                   <label for="user_email" class="custom-form-label">Modifier votre email</label>
                   <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control', placeholder: 'Adresse email' }, label: false %>
+                </div>
+
+                <!-- First Name Field -->
+                <div class="mb-3">
+                  <label for="user_first_name" class="custom-form-label">Prénom</label>
+                  <%= f.input :first_name, required: true, input_html: { class: 'form-control', placeholder: 'Votre prénom' }, label: false %>
+                </div>
+
+                <!-- Last Name Field -->
+                <div class="mb-3">
+                  <label for="user_last_name" class="custom-form-label">Nom</label>
+                  <%= f.input :last_name, required: true, input_html: { class: 'form-control', placeholder: 'Votre nom' }, label: false %>
                 </div>
 
                 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

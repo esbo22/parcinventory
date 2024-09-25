@@ -20,3 +20,8 @@
   /* background-color: #f8d7da; */
   /* color: #721c24; */
 }
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}

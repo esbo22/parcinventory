@@ -68,4 +68,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
+
+  # Rediriger vers une page après la mise à jour du compte
+  def after_update_path_for(resource)
+    flash[:notice] = "Votre compte a été mis à jour avec succès." # Flash de succes
+    edit_user_registration_path  # Redirige vers la page d'édition
+  end
 end
