@@ -1,7 +1,82 @@
-<p>Bonjour <%= @email %>!</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Modification de votre adresse e-mail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+      }
+      .email-header {
+        text-align: center;
+        padding: 10px 0;
+      }
+      .email-header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333333;
+      }
+      .email-body {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #555555;
+      }
+      .email-footer {
+        text-align: center;
+        font-size: 12px;
+        color: #888888;
+        margin-top: 20px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        margin: 20px 0;
+        background-color: #007bff;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <!-- Header Section -->
+      <div class="email-header">
+        <h1>Bonjour, <%= @email %>!</h1>
+      </div>
 
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>Nous vous contactons pour vous informer que votre adresse électronique a été modifiée en <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>Nous vous contactons pour vous informer que votre adresse électronique a été modifiée en <%= @resource.email %>.</p>
-<% end %>
+      <!-- Body Section -->
+      <div class="email-body">
+        <% if @resource.try(:unconfirmed_email?) %>
+          <p>Nous vous informons que votre adresse e-mail a été modifiée en <strong><%= @resource.unconfirmed_email %></strong>.</p>
+        <% else %>
+          <p>Nous vous informons que votre adresse e-mail a été modifiée en <strong><%= @resource.email %></strong>.</p>
+        <% end %>
+
+        <p>Si vous n'êtes pas à l'origine de ce changement, veuillez nous contacter immédiatement.</p>
+      </div>
+
+      <!-- Footer Section -->
+      <div class="email-footer">
+        <p>Merci pour votre confiance.<br>L'équipe de support</p>
+      </div>
+    </div>
+  </body>
+</html>

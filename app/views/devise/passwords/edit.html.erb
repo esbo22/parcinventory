@@ -1,27 +1,51 @@
-<h2>Modifier votre mot de passe</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-  <div class="form-inputs">
-    <%= f.input :password,
-                label: "Nouveau mot de passe",
-                required: true,
-                autofocus: true,
-                hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length),
-                input_html: { autocomplete: "nouveau mot de passe" } %>
-    <%= f.input :password_confirmation,
-                label: "Confirmez votre nouveau mot de passe",
-                required: true,
-                input_html: { autocomplete: "nouveau mot de passe" } %>
+<div class="container my-5">
+  <!-- Header Section -->
+  <div class="row justify-content-center">
+    <h4 class="mt-4 mb-4 display-4">Modifier votre mot de passe</h4>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Modifier mon mot de passe" %>
-  </div>
-<% end %>
+  <!-- Password Reset Card Section -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card p-4">
+            <div class="card-body">
+              <h5 class="card-title text-center">Formulaire de réinitialisation de mot de passe</h5>
 
-<%= render "devise/shared/links" %>
+              <!-- Simple Form for Resetting Password -->
+              <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+                <%= f.error_notification %>
+
+                <%= f.input :reset_password_token, as: :hidden %>
+                <%= f.full_error :reset_password_token %>
+
+                <!-- New Password Field -->
+                <div class="mb-3">
+                  <label for="user_password" class="custom-form-label">Nouveau mot de passe</label>
+                  <%= f.input :password, required: true, autofocus: true, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length), input_html: { class: 'form-control', autocomplete: "new-password", placeholder: 'Nouveau mot de passe' }, label: false %>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="mb-3">
+                  <label for="user_password_confirmation" class="custom-form-label">Confirmez votre nouveau mot de passe</label>
+                  <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control', autocomplete: "new-password", placeholder: 'Confirmez votre mot de passe' }, label: false %>
+                </div>
+
+                <div class="text-center">
+                  <%= f.button :submit, "Modifier mon mot de passe", class: "btn btn-outline-primary" %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Previous Page -->
+  <div class="text-center">
+    <%= link_to "Retour", :back, class: "btn btn-outline-secondary" %>
+  </div>
+</div>

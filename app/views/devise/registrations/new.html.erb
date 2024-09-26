@@ -1,27 +1,78 @@
-<h2>S'inscrire</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "nouveau mot de passe" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "nouveau mot de passe" } %>
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
+<div class="container my-5">
+  <!-- Header Section -->
+  <div class="row justify-content-center">
+    <h4 class="mt-4 mb-4 display-4">S'inscrire</h4>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "S'inscrire" %>
-  </div>
-<% end %>
+  <!-- Registration Card Section -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="text-center mt-3">
+        <h2 class="name display-6"><%= resource_name.to_s.humanize %></h2>
+        <p class="lead text-muted">Veuillez remplir les informations suivantes pour créer votre compte.</p>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <!-- Registration Form Section -->
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card p-4">
+            <div class="card-body">
+              <h5 class="card-title text-center">Formulaire d'inscription</h5>
+
+              <!-- Simple Form for Registration -->
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= f.error_notification %>
+
+                <!-- Email Field -->
+                <div class="mb-3">
+                  <label for="user_email" class="custom-form-label">Adresse e-mail</label>
+                  <%= f.input :email,
+                              required: true,
+                              autofocus: true,
+                              input_html: { class: 'form-control', placeholder: 'Entrez votre adresse e-mail', autocomplete: "email" }, 
+                              label: false %>
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-3">
+                  <label for="user_password" class="custom-form-label">Mot de passe</label>
+                  <%= f.input :password,
+                              required: true,
+                              hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length),
+                              input_html: { class: 'form-control', placeholder: 'Nouveau mot de passe', autocomplete: "nouveau mot de passe" }, 
+                              label: false %>
+                </div>
+
+                <!-- Password Confirmation Field -->
+                <div class="mb-3">
+                  <label for="user_password_confirmation" class="custom-form-label">Confirmer le mot de passe</label>
+                  <%= f.input :password_confirmation,
+                              required: true,
+                              input_html: { class: 'form-control', placeholder: 'Confirmer le mot de passe', autocomplete: "nouveau mot de passe" }, 
+                              label: false %>
+                </div>
+
+                <!-- Avatar Upload Section -->
+                <div class="mb-3">
+                  <%= f.label :avatar, class: 'custom-form-label' %>
+                  <%= f.file_field :avatar, class: 'form-control' %>
+                  <small class="text-muted">Taille maximale du fichier : 2MB</small>
+                </div>
+
+                <div class="text-center">
+                  <%= f.button :submit, "S'inscrire", class: "btn btn-outline-primary" %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Previous Page -->
+  <div class="text-center">
+    <%= link_to "Retour", :back, class: "btn btn-outline-secondary" %>
+  </div>
+</div>
