@@ -1,20 +1,54 @@
-<h2>Renvoyer les instructions de confirmation</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :confirmation_token %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-                input_html: { autocomplete: "email" } %>
+<div class="container my-5">
+  <!-- Header Section -->
+  <div class="row justify-content-center">
+    <h4 class="mt-4 mb-4 display-4">Renvoyer les instructions de confirmation</h4>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Renvoyer les instructions de confirmation" %>
-  </div>
-<% end %>
+  <!-- Form Card Section -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="text-center mt-3">
+        <h2 class="display-6">Confirmation de votre email</h2>
+        <p class="lead text-muted">Entrez votre adresse email pour recevoir un lien de confirmation</p>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <!-- Form Section -->
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card p-4">
+            <div class="card-body">
+              <h5 class="card-title text-center">Formulaire de renvoi</h5>
+
+              <!-- Simple Form for Resending Confirmation Instructions -->
+              <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+                <%= f.error_notification %>
+                <%= f.full_error :confirmation_token %>
+
+                <!-- Email Field -->
+                <div class="mb-3">
+                  <label for="user_email" class="custom-form-label">Adresse email</label>
+                  <%= f.input :email, required: true, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), input_html: { class: 'form-control', autocomplete: "email", placeholder: "Votre adresse email" }, label: false %>
+                </div>
+
+                <div class="text-center">
+                  <%= f.button :submit, "Renvoyer les instructions", class: "btn btn-outline-primary" %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Previous Page -->
+  <div class="text-center mb-4">
+    <%= link_to "Retour", :back, class: "btn btn-outline-secondary" %>
+  </div>
+
+  <!-- Devise Shared Links -->
+  <div class="text-center">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

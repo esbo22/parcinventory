@@ -1,18 +1,46 @@
-<h2>Mot de passe oublié ?</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+<div class="container my-5">
+  <!-- Header Section -->
+  <div class="row justify-content-center">
+    <h4 class="mt-4 mb-4 display-4">Mot de passe oublié ?</h4>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Envoyez-moi les instructions de réinitialisation du mot de passe" %>
-  </div>
-<% end %>
+  <!-- Password Reset Card Section -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card p-4">
+            <div class="card-body">
+              <h5 class="card-title text-center">Formulaire de réinitialisation de mot de passe</h5>
 
-<%= render "devise/shared/links" %>
+              <!-- Simple Form for Password Reset -->
+              <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <%= f.error_notification %>
+
+                <!-- Email Field -->
+                <div class="mb-3">
+                  <label for="user_email" class="custom-form-label">Adresse e-mail</label>
+                  <%= f.input :email,
+                              required: true,
+                              autofocus: true,
+                              input_html: { class: 'form-control', placeholder: 'Entrez votre adresse e-mail', autocomplete: "email" }, 
+                              label: false %>
+                </div>
+
+                <div class="text-center">
+                  <%= f.button :submit, "Envoyez-moi les instructions de réinitialisation du mot de passe", class: "btn btn-outline-primary" %>
+                </div>
+              <% end %>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Previous Page -->
+  <div class="text-center">
+    <%= link_to "Retour", :back, class: "btn btn-outline-secondary" %>
+  </div>
+</div>
