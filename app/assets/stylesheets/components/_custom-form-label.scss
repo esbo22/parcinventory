@@ -11,3 +11,20 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+.login-page .textbox input {
+  color: black !important; /* Texte avec la couleur personnalisée */
+  background-color: #fff !important; /* Fond blanc pour le champ */
+}
+
+.login-page .textbox input::placeholder {
+  color: black !important; /* Couleur de l'espace réservé */
+}
+
+.login-page .textbox {
+  margin-bottom: 15px;
+}
+
+.login-page .btn-container .btn {
+  width: 100%;
+}
