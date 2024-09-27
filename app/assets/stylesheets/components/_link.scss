@@ -1,0 +1,9 @@
+/* Style pour les liens */
+.custom-link {
+  color: rgb(68, 171, 182);
+  text-decoration: none; /* Pour retirer le soulignement par défaut */
+}
+
+.custom-link:hover {
+  color: darken(rgb(68, 171, 182), 10%); /* Effet hover */
+}
