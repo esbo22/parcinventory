@@ -28,10 +28,10 @@
               <% end %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Compte", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Compte", edit_user_registration_path, class: "nav-link" %>
               <%= link_to 'Mon profil', user_path(current_user), class: "nav-link" %>
-              <%= link_to "Paramètres", "#", class: "dropdown-item" %>
-              <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+              <%= link_to "Paramètres", "#", class: "nav-link" %>
+              <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
             </div>
           </li>
         <% else %>

@@ -47,8 +47,8 @@
       <img src="https://png.pngtree.com/element_our/20190524/ourmid/pngtree-the-companys-general-logo-is-commercially-available-image_1107874.jpg" class="card-trip-user avatar-bordered" />
     </div>
     <div>
-      <%= link_to "Editer", edit_client_path(@client) %> |
-      <%= link_to "Retour aux clients", clients_path %>
+      <%= link_to "Editer", edit_client_path(@client), class: "custom-link" %> |
+      <%= link_to "Retour aux clients", clients_path, class: "custom-link" %>
       <%= button_to "Détruire la fiche client", @client, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "btn btn-ghost" %>
     </div>
   </div>
