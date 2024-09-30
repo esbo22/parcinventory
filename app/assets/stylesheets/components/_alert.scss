@@ -1,27 +1,29 @@
-.notice, .alert {
-  position: absolute;
-  top: 70px; /* Ajuste cette valeur pour qu'elle corresponde à la hauteur de votre navbar */
-  right: 16px;
-  width: auto; 
-  max-width: 300px; 
-  margin-bottom: 1rem;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+#flash-alert {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  margin: 10px;
+  animation: fadeOut 5s forwards; /* 3 secondes */
 }
 
-/* Supprime les styles personnalisés pour ne pas écraser les couleurs Bootstrap */
-.notice {
-  /* background-color: #d4edda; */
-  /* color: #155724; */
-}
-
-.alert {
-  /* background-color: #f8d7da; */
-  /* color: #721c24; */
-}
-
-.fade-out {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none; /* Masquer complètement */
+  }
 }
