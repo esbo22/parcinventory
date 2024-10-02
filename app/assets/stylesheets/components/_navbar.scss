@@ -1,4 +1,28 @@
 /* Réinitialisation des marges et paddings globaux */
+
+body:not(.home-page) {
+  .navbar-pi {
+    justify-content: space-between;
+    background-color: #fff;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Autres styles pour la navbar */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -7,7 +31,7 @@ html, body {
 /* Styles généraux pour la page */
 body {
   font-family: sans-serif;
-  padding-top: 70px; /* Décalage pour la navbar fixe */
+  padding-top: 100px; /* Décalage pour la navbar fixe */
   /* background: url(../img/img.jpg) no-repeat center center; */
   background-color: #44abb6; /* Fond blanc pour la page */
   background-size: cover;
@@ -137,4 +161,6 @@ body {
     align-items: center;
     margin-bottom: 10px;
   }
+}
+
 }
