@@ -65,3 +65,25 @@ tr:hover {
 .button-37 img {
   pointer-events: none; /* Ensure the image doesn't capture the click */
 }
+/* tableau clients*/
+/* Ajustement des largeurs des colonnes */
+.col-id {
+  width: 1%;  /* ID prend 3% de la largeur du tableau */
+}
+
+.col-name {
+  width: 50%;  /* Nom du client prend 30% de la largeur */
+}
+
+.col-city {
+  width: 30%;  /* Ville prend 20% de la largeur */
+}
+
+.col-delete {
+  width: 1%;  /* Suppression prend 20% de la largeur */
+}
+
+/* Assure que le tableau utilise toute la largeur disponible */
+.table {
+  width: 100%;  
+}
