@@ -29,9 +29,10 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col" class="tab-index">ID</th>
-            <th scope="col" class="tab-index">Nom du client</th>
-            <th scope="col" class="tab-index" colspan="1">Suppression</th>
+            <th scope="col" class="tab-index col-id">ID</th>
+            <th scope="col" class="tab-index col-name">Nom du client</th>
+            <th scope="col" class="tab-index col-city">Ville</th>
+            <th scope="col" class="tab-index col-delete">Suppression</th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
             <tr onclick="window.location='<%= client_path(client) %>'">
               <td class="tab-index"><%= client.id %></td>
               <td class="<%= client.name_present? ? 'name-present' : 'name-absent' %>"><%= client.name %></td>
+              <td class=""><%= client.location %></td>
               <td>
                 <%= button_to "supprimer", client_path(client), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce client ?" }, class: "btn btn-ghost" %>
               </td>
