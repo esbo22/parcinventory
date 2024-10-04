@@ -2,6 +2,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <h3 class="mt-4 mb-4 display-4"><%= @client.name %></h3>
+    <h5 class="text-muted">Date d'impression : <%= Time.now.strftime('%d/%m/%Y') %></h5>
   </div>
 
   <% if @computers.present? %>
@@ -35,32 +36,104 @@
           <tbody>
             <% @computers.each do |computer| %>
               <tr>
-                <td><%= computer.id %></td>
-                <td class="<%= computer.hostname.present? ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.hostname %></td>
-                <td class="<%= computer.date.present? ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.date.present? ? computer.date.strftime('%d/%m/%Y') : 'Non spécifié' %></td>
-                <td class="<%= case (Date.today.year - computer.date.year)
-                               when 0..3 then 'bg-success text-white'
-                               when 4 then 'bg-warning text-dark'
-                               else 'bg-danger text-white'
-                             end %>">
-                  <%= computer.endoflife.present? ? computer.endoflife.strftime('%d/%m/%Y') : 'Non spécifié' %>
+                <td class="align-middle text-center"><%= computer.id %></td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.hostname.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
+                    <%= computer.hostname.presence || 'N.C.' %>
+                  </span>
                 </td>
-                <td class="<%= computer.assigned_to.present? ? 'bg-success text-white' : 'bg-warning text-dark' %>"><%= computer.assigned_to.presence || 'Non assigné' %></td>
-                <td class="<%= computer.processor.present? ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.processor %></td>
-                <td class="<%= computer.memory.present? && computer.memory.to_i >= 8 ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.memory %></td>
-                <td class="<%= %w[SSD NVMe].include?(computer.type_disk) ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.type_disk %></td>
-                <td class="<%= computer.os.present? ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.os %></td>
-                <td class="<%= computer.vpn ? 'bg-success text-white' : 'bg-warning text-dark' %>"><%= computer.vpn ? 'Oui' : 'Non' %></td>
-                <td class="<%= computer.rds ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.rds ? 'Oui' : 'Non' %></td>
-                <td class="<%= computer.pack_office_installe == 'Oui' ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.pack_office_installe %></td>
-                <td class="<%= computer.teamviewer_installe == 'Oui' ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.teamviewer_installe %></td>
-                <td class="<%= computer.ad ? 'bg-success text-white' : 'bg-warning text-dark' %>"><%= computer.ad ? 'Oui' : 'Non' %></td>
-                <td class="<%= ['100Mb', 'Téléphone IP', 'Partage de connexion'].include?(computer.reseau) ? 'bg-danger text-white' : 'bg-success text-white' %>"><%= computer.reseau %></td>
-                <td class="<%= computer.antivirus_name.present? ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.antivirus_name %></td>
-                <td class="<%= computer.antivirus_start_date.present? ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.antivirus_start_date.present? ? computer.antivirus_start_date.strftime('%d/%m/%Y') : 'Non spécifié' %></td>
-                <td class="<%= computer.local_account.present? ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.local_account %></td>
-                <td class="<%= computer.local_password.present? ? 'bg-success text-white' : 'bg-danger text-white' %>"><%= computer.local_password %></td>
-                <td><%= computer.commentaire %></td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.date.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
+                    <%= computer.date.present? ? computer.date.strftime('%d/%m/%Y') : 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= case (Date.today.year - (computer.date&.year || 0))
+                                     when 0..3 then 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill'
+                                     when 4 then 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill'
+                                     else 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill'
+                                   end %>">
+                    <%= computer.endoflife.present? ? computer.endoflife.strftime('%d/%m/%Y') : 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.assigned_to.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
+                    <%= computer.assigned_to.presence || 'Non assigné' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.processor.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
+                    <%= computer.processor.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.memory.present? && computer.memory.to_i >= 8 ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
+                    <%= computer.memory.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= %w[SSD NVMe].include?(computer.type_disk) ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
+                    <%= computer.type_disk.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.os.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
+                    <%= computer.os.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.vpn ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
+                    <%= computer.vpn ? 'Oui' : 'Non' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.rds ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
+                    <%= computer.rds ? 'Oui' : 'Non' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.pack_office_installe == 'Oui' ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
+                    <%= computer.pack_office_installe.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.teamviewer_installe == 'Oui' ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
+                    <%= computer.teamviewer_installe.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.ad ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
+                    <%= computer.ad ? 'Oui' : 'Non' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= ['100Mb', 'Téléphone IP', 'Partage de connexion'].include?(computer.reseau) ? 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' : 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' %>">
+                    <%= computer.reseau.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.antivirus_name.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
+                    <%= computer.antivirus_name.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.antivirus_start_date.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
+                    <%= computer.antivirus_start_date.present? ? computer.antivirus_start_date.strftime('%d/%m/%Y') : 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.local_account.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill' %>">
+                    <%= computer.local_account.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="<%= computer.local_password.present? ? 'badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill' : 'badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill' %>">
+                    <%= computer.local_password.presence || 'N.C.' %>
+                  </span>
+                </td>
+                <td class="align-middle text-center">
+                  <%= computer.commentaire.presence || 'Aucun commentaire' %>
+                </td>
               </tr>
             <% end %>
           </tbody>
@@ -68,8 +141,8 @@
       </div>
     </div>
   <% else %>
-    <div class="alert alert-info mt-4">
-      <strong>Bienvenue !</strong> Créez votre premier équipement :)
+    <div class="alert alert-warning text-center mt-4" role="alert">
+      Aucun équipement trouvé pour ce client.
     </div>
   <% end %>
 </div>
