@@ -5,6 +5,34 @@
     <h5 class="text-muted">Date d'impression : <%= Time.now.strftime('%d/%m/%Y') %></h5>
   </div>
 
+  <!-- Sélecteurs pour format de papier et orientation -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-4">
+      <label for="paper-size" class="form-label">Format :</label>
+      <select id="paper-size" class="form-select">
+        <option value="A4">A4</option>
+        <option value="A3">A3</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="orientation" class="form-label">Orientation :</label>
+      <select id="orientation" class="form-select">
+        <option value="portrait">Portrait</option>
+        <option value="landscape">Paysage</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Boutons pour imprimer ou générer un PDF -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-2">
+      <button id="print-btn" class="btn btn-primary w-100">Imprimer</button>
+    </div>
+    <div class="col-md-2">
+      <button id="pdf-btn" class="btn btn-secondary w-100">Générer PDF</button>
+    </div>
+  </div>
+
   <% if @computers.present? %>
     <div class="row justify-content-center">
       <div class="table-container">
@@ -146,3 +174,15 @@
     </div>
   <% end %>
 </div>
+
+<!-- Scripts pour imprimer et générer un PDF -->
+<script>
+  document.getElementById('print-btn').addEventListener('click', function() {
+    window.print();
+  });
+
+  document.getElementById('pdf-btn').addEventListener('click', function() {
+    // Fonctionnalité pour générer un PDF (dépend de la configuration backend)
+    alert('Génération de PDF non implémentée dans cette démonstration.');
+  });
+</script>
