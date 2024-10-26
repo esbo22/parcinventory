@@ -23,6 +23,10 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "devise"
 
+# gem pdf pour l'impression ecran
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # gem 'ruby-progressbar' pour la console au deployement des seed
 gem 'ruby-progressbar'
 

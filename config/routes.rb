@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   resources :clients do
     resources :computers, only: [:new, :create, :index, :edit, :update, :show, :destroy]
 
-    # Route pour l'impression des équipements d'un client
+    # Route pour l'impression des équipements d'un client (HTML et PDF)
     member do
-      get 'print_equipments', to: 'clients#print_equipments'
+      get 'print_equipments', to: 'clients#print_equipments', defaults: { format: :html }  # Route pour HTML par défaut
+      get 'print_equipments.pdf', to: 'clients#print_equipments', as: :print_equipments_pdf, defaults: { format: :pdf }  # Route pour PDF
     end
 
     # Route pour l'autocomplétion

@@ -1,3 +1,42 @@
+<%= wicked_pdf_stylesheet_link_tag 'application', media: 'all' %>
+<%= wicked_pdf_stylesheet_link_tag 'print', media: 'all' %>
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #007bff; /* Exemple de couleur d'en-tête */
+    color: white; /* Couleur de texte d'en-tête */
+  }
+
+  .badge {
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .badge.bg-success-subtle {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+  }
+
+  .badge.bg-danger-subtle {
+    background-color: rgba(255, 7, 7, 0.1);
+    color: #ff073a;
+  }
+
+  /* Ajoutez d'autres styles pour vos badges si nécessaire */
+</style>
+
+
 <!-- app/views/clients/print_equipments.html.erb -->
 <div class="container">
   <div class="row justify-content-center">
@@ -29,8 +68,9 @@
       <button id="print-btn" class="btn btn-primary w-100">Imprimer</button>
     </div>
     <div class="col-md-2">
-      <button id="pdf-btn" class="btn btn-secondary w-100">Générer PDF</button>
+      <%= link_to 'Générer PDF', print_equipments_pdf_client_path(@client), class: 'btn btn-secondary w-100', id: 'pdf-btn' %>
     </div>
+
   </div>
 
   <% if @computers.present? %>
@@ -175,14 +215,9 @@
   <% end %>
 </div>
 
-<!-- Scripts pour imprimer et générer un PDF -->
+<!-- Scripts pour imprimer -->
 <script>
   document.getElementById('print-btn').addEventListener('click', function() {
     window.print();
-  });
-
-  document.getElementById('pdf-btn').addEventListener('click', function() {
-    // Fonctionnalité pour générer un PDF (dépend de la configuration backend)
-    alert('Génération de PDF non implémentée dans cette démonstration.');
   });
 </script>

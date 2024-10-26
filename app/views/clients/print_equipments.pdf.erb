@@ -1,0 +1,56 @@
+<!-- app/views/clients/print_equipments.pdf.erb -->
+<h1>Liste des équipements pour <%= @client.name %></h1>
+<h5>Date d'impression : <%= Time.now.strftime('%d/%m/%Y') %></h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Acheté le</th>
+      <th>Fin de vie</th>
+      <th>Assigné</th>
+      <th>CPU</th>
+      <th>RAM</th>
+      <th>Stockage</th>
+      <th>OS</th>
+      <th>VPN</th>
+      <th>RDS</th>
+      <th>Office</th>
+      <th>TeamViewer</th>
+      <th>AD</th>
+      <th>Réseau</th>
+      <th>Antivirus</th>
+      <th>Installé le</th>
+      <th>Compte local</th>
+      <th>Mdp local</th>
+      <th>Commentaires</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @computers.each do |computer| %>
+      <tr>
+        <td><%= computer.id %></td>
+        <td><%= computer.hostname.presence || 'N.C.' %></td>
+        <td><%= computer.date.present? ? computer.date.strftime('%d/%m/%Y') : 'N.C.' %></td>
+        <td><%= computer.endoflife.present? ? computer.endoflife.strftime('%d/%m/%Y') : 'N.C.' %></td>
+        <td><%= computer.assigned_to.presence || 'Non assigné' %></td>
+        <td><%= computer.processor.presence || 'N.C.' %></td>
+        <td><%= computer.memory.presence || 'N.C.' %></td>
+        <td><%= computer.type_disk.presence || 'N.C.' %></td>
+        <td><%= computer.os.presence || 'N.C.' %></td>
+        <td><%= computer.vpn ? 'Oui' : 'Non' %></td>
+        <td><%= computer.rds ? 'Oui' : 'Non' %></td>
+        <td><%= computer.pack_office_installe.presence || 'N.C.' %></td>
+        <td><%= computer.teamviewer_installe.presence || 'N.C.' %></td>
+        <td><%= computer.ad ? 'Oui' : 'Non' %></td>
+        <td><%= computer.reseau.presence || 'N.C.' %></td>
+        <td><%= computer.antivirus_name.presence || 'N.C.' %></td>
+        <td><%= computer.antivirus_start_date.present? ? computer.antivirus_start_date.strftime('%d/%m/%Y') : 'N.C.' %></td>
+        <td><%= computer.local_account.presence || 'N.C.' %></td>
+        <td><%= computer.local_password.presence || 'N.C.' %></td>
+        <td><%= computer.commentaire.presence || 'Aucun commentaire' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

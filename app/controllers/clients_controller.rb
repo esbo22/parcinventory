@@ -53,6 +53,23 @@ class ClientsController < ApplicationController
     render json: clients.map { |client| { label: client.name, value: client.id } }
   end
 
+  def print_equipments
+    @client = Client.find(params[:id])
+    @computers = @client.computers
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "equipments_#{@client.name}",
+               page_size: params[:paper_size] || 'A4',
+               orientation: params[:orientation] || 'landscape',  
+               template: "clients/print_equipments",  # Ne pas préciser .html.erb, Rails va le chercher automatiquement
+               layout: 'pdf'  # Si vous avez un layout spécifique pour le PDF
+      end
+    end
+  end
+
+
   private
 
   def set_client
